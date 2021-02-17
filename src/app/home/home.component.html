@@ -1,0 +1,164 @@
+ <form>
+
+    <h1>Home</h1>
+
+    <div style="float: right;">
+      <button mat-fab>
+        <mat-icon (click)="Gameform('')" >add</mat-icon>
+        <!-- [routerLink]="['/form']" -->
+      </button>
+    </div>
+  
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Assessor Id, Name, Match..">
+    </mat-form-field><br>
+  
+    <mat-form-field style="width: 25%">
+        <mat-label>Season</mat-label>
+        <mat-select [formControl]="topseas" disableRipple>
+          <!-- <mat-select-trigger>
+            {{toppings.value ? toppings.value[0] : ''}}
+            <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+              (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger> -->
+           <mat-select-trigger>{{topseas.value}}</mat-select-trigger>
+          <mat-option *ngFor="let season of Seasons" [value]="season.season"  (click)="onSelectionSeason(season)">
+            {{season.season}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 25%">
+      <mat-label>Competitions</mat-label>
+      <mat-select (ngModelChange)="onSelectionCompetition()" [formControl]="topcomp" multiple>
+        <mat-select-trigger>
+          {{topcomp.value ? topcomp.value[0] : ''}}
+          <span *ngIf="topcomp.value?.length > 1" class="example-additional-selection">
+            (+{{topcomp.value.length - 1}} {{topcomp.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping.competition">{{topping.competition}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+     
+ 
+  
+  
+    <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="20"
+      [pageSizeOptions]="[20, 40, 60, 80]">
+    </mat-paginator>
+  
+  
+      <div class="example-container mat-elevation-z8">
+        <table mat-table  matSort aria-label="Elements">
+          <!-- Id Column -->
+          <ng-container matColumnDef="id" > 
+            <th  mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td class="tothecenter" mat-cell  *matCellDef="let row">{{row.ID}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="competition">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >competition</th>
+            <td class="competition"  mat-cell *matCellDef="let row">{{row.Competition}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container class="small" matColumnDef="round" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>round</th>
+            <td class="tothecenter" mat-cell *matCellDef="let row">{{row.Round}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="Datetime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date/time</th>
+            <td class="teamb" mat-cell *matCellDef="let row">{{row.Datetime}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="teamA" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>teamA</th>
+            <td class="team" mat-cell *matCellDef="let row">{{row.EquipeA}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="teamB" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>teamB</th>
+            <td class="teamb" mat-cell *matCellDef="let row">{{row.EquipeB}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="referee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Referee</th>
+            <td  mat-cell *matCellDef="let row">{{row.Referee}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="fassistant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>1st assistant</th>
+            <td class="grey" mat-cell *matCellDef="let row">{{row.Fassistant}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="sassistant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>2nd assistant</th>
+            <td  mat-cell *matCellDef="let row">{{row.sassistant}}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="fourth">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>4th Official</th>
+            <td  mat-cell *matCellDef="let row">{{row.Fourthofficial}}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="faddassistant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>VAR</th>
+            <td  mat-cell *matCellDef="let row">{{row.faddassistant}}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="saddassistant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>AVAR</th>
+            <td  mat-cell *matCellDef="let row">{{row.saddassistant}}</td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="refereeobs" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Accessor</th>
+            <td class="grey" mat-cell *matCellDef="let row">{{row.Refereeobserver}}</td>
+          </ng-container>
+  
+           <!-- Name Column -->
+           <ng-container matColumnDef="obsReferee" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Obs</th>
+            <td class="obsref" mat-cell *matCellDef="let row">
+              <mat-icon (click)="mousEvent(row)">notes</mat-icon>
+            </td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="details" >
+
+            
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
+            <td class="obsref" mat-cell *matCellDef="let row">
+              
+              <mat-icon  (click)="SanctionForm(row)">block</mat-icon>
+              <mat-icon  (click)="reussiteref(row)" >trending_up</mat-icon>
+              <mat-icon  (click)="Gameform(row)" >drag_indicator</mat-icon>
+              <!-- [routerLink]="['/form' , row]" -->
+            </td>
+          </ng-container>
+  
+          <tr sticky mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        </table>
+      </div>
+  
+  </form>

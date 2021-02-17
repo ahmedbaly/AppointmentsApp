@@ -1,0 +1,20 @@
+.tableReferees {
+    height: 350px;
+    /* max-width: 100%; */
+    width: 100%;
+    overflow: auto;
+  }
+  
+
+  .tableGroups{
+    margin-top: 20px;
+    height: 300px;
+    /* max-width: 100%; */
+    width: 100%;
+    overflow: auto;
+  }
+
+  table {
+    width: 600px;
+  }
+  

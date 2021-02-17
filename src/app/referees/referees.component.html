@@ -1,0 +1,240 @@
+<form *ngIf="reflist">
+
+  <h1>Referees List</h1>
+
+  <div class="addfab">
+    <button mat-fab>
+      <mat-icon  [routerLink]="['/requirement']" >add</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Referee Id, Name, Match..">
+  </mat-form-field><br>
+
+
+  <mat-form-field style="width: 25%">
+    <mat-label>Level</mat-label>
+    <mat-select>
+      <mat-option (click)="onEmptySelection('level')"></mat-option>
+      <mat-option *ngFor="let level of levelList" (click)="onSelectionLevel(level)"
+        [value]="level.levels">{{level.levels}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field style="margin-left:10px; width: 25%">
+    <mat-label>Nature</mat-label>
+    <mat-select>
+      <mat-option (click)="onEmptySelection('nature')"></mat-option>
+      <mat-option *ngFor="let nature of natureList" (click)="onSelectionNature(nature)" 
+        [value]="nature.nature">{{nature.nature}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <table mat-table class="mat-elevation-z8 table"  matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.ID}}</td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+
+      <!-- Number Column -->
+      <ng-container matColumnDef="match">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Match</th>
+        <td mat-cell (click)="mousEvent(row)" *matCellDef="let row">{{row.number}}</td>
+      </ng-container>
+
+      <!-- Height Column -->
+      <ng-container matColumnDef="height">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Height</th>
+        <td mat-cell *matCellDef="let row">{{row.height}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
+        <td mat-cell *matCellDef="let row">{{row.weight}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="available">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Availability</th>
+        <td mat-cell *matCellDef="let row">Available
+          <mat-slide-toggle #toggle [checked]='row.available' (change)="setavailability(row,toggle)">Unavailable</mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
+        <td mat-cell *matCellDef="let row">
+          <button color="accent"  (click)="RefereeLevel(row,true)" mat-raised-button>
+            <mat-icon >trending_up</mat-icon>
+          </button>
+          <button color="primary" (click)="RefereeLevel(row, false)" mat-raised-button>
+            <mat-icon> drag_indicator</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 30, 40]">
+  </mat-paginator>
+
+</form>
+
+<form *ngIf="!reflist">
+  <h1>Appointments Referees Diagram</h1>
+
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" (click)="mousEvent('row')">
+          <mat-icon >keyboard_backspace</mat-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="charttype()">Bar Chart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="charttype()">Pie Chart</a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="chart">
+    <div style="display: block; width: 700px;">
+      <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
+    </div>
+  </div>
+  
+  <div *ngIf="!chart">
+    <div style="display: block ;width: 1000px;">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [legend]="pieChartLegend"
+              [chartType]="pieChartType"></canvas>
+    </div>
+  </div>
+
+
+  <div class="example-container mat-elevation-z8">
+    <mat-form-field style="width: 25%">
+      <mat-label>Season</mat-label>
+      <mat-select [formControl]="topseas" disableRipple>
+         <mat-select-trigger>{{topseas.value}}</mat-select-trigger>
+        <mat-option *ngFor="let season of Seasons" [value]="season.season"  (click)="onSelectionSeason(season)">
+          {{season.season}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 25%">
+      <mat-label>Competitions</mat-label>
+      <mat-select (ngModelChange)="onSelectionCompetition()" [formControl]="topcomp" multiple>
+        <mat-select-trigger>
+          {{topcomp.value ? topcomp.value[0] : ''}}
+          <span *ngIf="topcomp.value?.length > 1" class="example-additional-selection">
+            (+{{topcomp.value.length - 1}} {{topcomp.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping.competition">{{topping.competition}}</mat-option>
+      </mat-select>
+    </mat-form-field> 
+
+    <table #sub mat-table [dataSource]="subdataSource"  class="full-width-table"  aria-label="Elements">
+      <ng-container matColumnDef="id"> 
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >ID</th>
+        <td class="tothecenter" mat-cell  *matCellDef="let subrow">{{subrow.ID}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="competition">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >competition</th>
+        <td class="competition"  mat-cell *matCellDef="let subrow">{{subrow.Competition}}</td>
+      </ng-container>
+
+      <ng-container class="small" matColumnDef="round">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >round</th>
+        <td class="tothecenter" mat-cell *matCellDef="let subrow">{{subrow.Round}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Datetime">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >Date/time</th>
+        <td class="teamb" mat-cell *matCellDef="let subrow">{{subrow.Datetime}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="teamA">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >teamA</th>
+        <td class="team" mat-cell *matCellDef="let subrow">{{subrow.EquipeA}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="teamB">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >teamB</th>
+        <td class="teamb" mat-cell *matCellDef="let subrow">{{subrow.EquipeB}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="referee">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef>Referee</th>
+        <td class="team" mat-cell *matCellDef="let subrow">{{subrow.Referee}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fassistant">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >1st assistant</th>
+        <td class="grey" mat-cell *matCellDef="let subrow">{{subrow.Fassistant}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="sassistant">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >2nd assistant</th>
+        <td class="team" mat-cell *matCellDef="let subrow">{{subrow.sassistant}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="faddassistant">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >VAR/ 1st Additional</th>
+        <td class="grey" mat-cell *matCellDef="let subrow">{{subrow.faddassistant}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="saddassistant">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >AVAR/ 2nd Additional</th>
+        <td class="team" mat-cell *matCellDef="let subrow">{{subrow.saddassistant}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="refereeobs">
+        <th style="text-align: center;" mat-header-cell *matHeaderCellDef >Referee observer</th>
+        <td class="grey" mat-cell *matCellDef="let subrow">{{subrow.Refereeobserver}}</td>
+      </ng-container>
+
+      <tr sticky mat-header-row *matHeaderRowDef="secdisplayedColumns"></tr>
+      <tr mat-row   *matRowDef="let subrow; columns: secdisplayedColumns;"></tr>
+
+    </table>
+  </div>
+   
+</form>
+
+ -->
+

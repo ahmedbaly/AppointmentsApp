@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{data.club}}</h1>
+<div mat-dialog-content>
+
+
+  <section class="example-section">
+
+    <div *ngIf="!cup">
+      <h3>Round</h3>
+      <button mat-mini-fab color='primary' (click)="updateround('remove')">-</button>
+      <input  style="width: 50px; text-align: center;"  [value]="updateround('')" >
+      <button mat-mini-fab color='accent'(click)="updateround('add')">+</button>
+    </div> 
+
+    <div *ngIf="cup">
+      <h3>Round</h3>
+      <mat-select [formControl]="toppings" (ngModelChange)="updateround('cup')">
+        <mat-select-trigger>
+            <span>{{toppings.value}}</span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </div> 
+
+    <br>
+
+    <div *ngIf="!cup">
+      <h3>Score</h3>
+
+      <button mat-mini-fab color='primary' (click)="updateScore('remove')">-</button>
+      <input  style="width: 50px; text-align: center;"  [value]="updateScore('')" >
+      <button mat-mini-fab color='accent'(click)="updateScore('add')">+</button>
+    </div>  
+    
+    
+  </section>
+
+
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button  mat-raised-button  color="primary" (click)="confirmDialog()">Confirm</button>
+</div>

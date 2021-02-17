@@ -1,0 +1,83 @@
+<h1 mat-dialog-title>Settings</h1>
+<div mat-dialog-content>
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+        <mat-step [stepControl]="firstFormGroup" label="Select Competition">
+          <form [formGroup]="firstFormGroup">
+        
+            <div>
+                <div class="mat-elevation-z8 tableGroups">
+                    <table mat-table [dataSource]="data.Competitions" style="height: 200px;">
+        
+                      <ng-container matColumnDef="id" >
+                        <th mat-header-cell *matHeaderCellDef >No</th>
+                        <td style="width: 100px;" mat-cell *matCellDef="let row; let i = index;">{{i+1}}</td>
+                      </ng-container>
+                    
+                      <ng-container matColumnDef="group" >
+                        <th mat-header-cell *matHeaderCellDef>Group</th>
+                        <td style="width: 150px;" mat-cell *matCellDef="let row">{{row.competition}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="date" >
+                        <th mat-header-cell *matHeaderCellDef>Check</th>
+                        <td style="width: 100px;" mat-cell *matCellDef="let row; let i = index;">
+                          <mat-radio-button class="example-radio-button" 
+                          (click)="SelectCompetition(row)"></mat-radio-button>
+                        </td>
+                      </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>    
+            </div>
+            <br>
+            <div style="float:right">
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step [stepControl]="secondFormGroup" label="Affect Levels to Competition">
+            <form [formGroup]="secondFormGroup">
+
+            <h3>Levels</h3>
+            <div class="mat-elevation-z8 tableReferees">
+              <table #table mat-table [dataSource]="Levels">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef>Id</th>
+                  <td mat-cell style="width: 60px;" *matCellDef="let row">{{row.ID}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Level</th>
+                  <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.levels}}</td>
+                </ng-container>
+                    
+                <ng-container matColumnDef="check" >
+                  <th mat-header-cell *matHeaderCellDef>Check</th>
+                  <td #check mat-cell style="width: 50px; padding-left: 10px;" *matCellDef="let row; let i = index;">
+                    <mat-checkbox (change)="selectLevel(row,i)" [checked]="LevelChecks(row)">
+                </mat-checkbox>
+                  </td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="RefdisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: RefdisplayedColumns;"></tr>
+              </table>
+            </div>
+              
+            <br>
+            <div style="float:right">
+                <button mat-raised-button matStepperPrevious>Back</button>
+            </div>
+          </form>
+          
+        </mat-step>
+
+    </mat-horizontal-stepper>
+
+</div> 

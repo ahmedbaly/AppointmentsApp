@@ -1,0 +1,22 @@
+form{
+    position: relative;
+    margin-left: 220px;
+    background: white;
+}
+h1{
+    margin-top: 20px;
+    position: relative;
+}
+p{
+    margin-left: 10px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+  }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 50%;
+    }

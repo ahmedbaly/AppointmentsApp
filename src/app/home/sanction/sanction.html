@@ -1,0 +1,85 @@
+<form >
+  <h2>Sanction</h2>
+
+  <div class="block">
+
+    <p style="position: relative;">Game Information:</p><br>
+
+    <mat-form-field  style="width: 90px;" appearance="outline">
+      <mat-label>ID</mat-label>
+      <input matInput value="{{data.ID}}"  readonly>
+    </mat-form-field >
+      
+    <mat-form-field class="input" appearance="outline">
+      <mat-label >Competition</mat-label>
+      <input matInput value="{{data.Competition}}" readonly>
+    </mat-form-field> 
+
+    <mat-form-field  style="width: 90px;" appearance="outline">
+      <mat-label >Round</mat-label>
+      <input matInput value="{{data.Round}}" readonly>
+    </mat-form-field> 
+
+    <mat-form-field class="inputdate" appearance="outline">
+      <mat-label>Date/Time</mat-label>
+      <input matInput value="{{data.Datetime}}" readonly>
+    </mat-form-field> <br>
+
+
+    <mat-form-field class="input" appearance="outline">
+      <mat-label >Team A</mat-label>
+      <input matInput value="{{data.EquipeA}}" readonly>
+    </mat-form-field> 
+
+    <mat-form-field   style="width: 90px;"  appearance="outline">
+      <mat-label >Score</mat-label>
+      <input matInput value="{{data.score}}" readonly>
+    </mat-form-field> 
+
+    <mat-form-field class="input"  appearance="outline">
+      <mat-label >Team B</mat-label>
+      <input matInput value="{{data.EquipeB}}" readonly>
+    </mat-form-field> <br>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div>
+    <p style="position: relative;">Teams:</p><br>
+    <mat-radio-group style="text-align: center;" [(ngModel)]="Team" name='teams' >
+      <mat-radio-button *ngFor="let team of teams" [value]="team"> {{team}} </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-divider></mat-divider>  
+  <div>
+    <p style="position: relative;">Referees:</p><br>
+    <div>
+      <div *ngFor="let item of Referees ; let i = index;">
+        <mat-checkbox [checked]="item.check" (change)="checkRef(i)">{{item.role}}: {{item.name}}</mat-checkbox> 
+        <button *ngIf="item.check" mat-button style="float: right;" (click)="picker.open()">
+          <mat-icon color="primary">calendar_today</mat-icon>
+        </button>
+        <input *ngIf="!picker.opened" style="float: right; width: 100px;" value="{{convertDate(item.date)}}"> 
+        <input *ngIf="item.check" style="float: right; width: 100px;" matInput 
+            (dateChange)="DateRef(i,picker)" [matDatepicker]="picker">
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-form-field style="width: 90%;" appearance="fill">
+    <mat-label >Description</mat-label>
+    <textarea matInput style="direction: rtl;" #description rows="5" cols="60" type="text" ></textarea>
+  </mat-form-field> <br> <br> 
+
+</form>
+
+
+
+<div mat-dialog-actions style="float: right;">
+  <button  mat-stroked-button style="width: 80px;" (click)="closeDialog()" >Cancel</button>
+  <button  mat-raised-button style="width: 80px;" color="primary" (click)="SendNotes()" [disabled]="disable">Okay</button>
+</div>

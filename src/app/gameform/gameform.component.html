@@ -1,0 +1,243 @@
+<div class="gameform">
+
+  <form class="example-form" [formGroup]="form" >
+    <h1>Game Report</h1>
+    <div class="match-container" >
+
+      <div class="block" formGroupName="gamedetails">
+
+        <h2>Game Details</h2>
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label>ID</mat-label>
+          <input matInput type="text" id="ID" formControlName="id"  [readonly]="!readonly">
+          <input matInput  *ngIf='readonlymagic' readonly>
+        </mat-form-field >
+          
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Competition</mat-label>
+          <input matInput type="text" (ngModelChange)="CompetitionfilterItem($event)" formControlName="competition" [readonly]="readonly">
+            <mat-select #competitionselect  *ngIf="!readonly" >
+            <mat-option value="empty"></mat-option>
+            <mat-option *ngFor="let item of competitions" (click)="onChangeofOptions(item,'competition')">{{item}}</mat-option>    
+          </mat-select>
+        </mat-form-field> <br>
+ 
+        <mat-form-field class="inputround" appearance="fill">
+          <mat-label >Round</mat-label>
+          <input matInput *ngIf="readonly"  type="number"  formControlName="round" [readonly]="readonly">
+          <input matInput *ngIf="!readonly" type="number" formControlName="round" min="1" max="25">
+          <input matInput  *ngIf='readonlymagic' readonly>
+
+          <mat-error *ngIf="isValidField('round','gamedetails.round')">Enter a Round or select from 1 to 25.</mat-error>
+
+        </mat-form-field> 
+
+        <mat-form-field (click)="mousEvent()" class="inputdate" appearance="fill">
+          <mat-label>Date/Time</mat-label>
+          <input matInput formControlName="date" readonly>
+          <input matInput  *ngIf='readonlymagic' readonly>
+        </mat-form-field> <br>
+  
+  
+        <mat-form-field class="inputstadium" appearance="fill">
+          <mat-label >Stadium</mat-label>
+          <input matInput type="text" (ngModelChange)="StadiumfilterItem($event)" formControlName="stadium" [readonly]="readonly">
+          <mat-select #stadiumselect  *ngIf="!readonly" >
+            <mat-option value="empty"></mat-option>
+            <mat-option *ngFor="let item of stadiums" (click)="onChangeofOptions(item,'stadiums')">{{item}}</mat-option>    
+          </mat-select>
+        </mat-form-field><br>
+  
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Team A</mat-label>
+          <input matInput type="text" (ngModelChange)="teamsfilterItem($event)" 
+                 formControlName="teama" [readonly]="readonly">
+            <mat-select #teamaselect  *ngIf="!readonly" >
+              <mat-option value="empty"></mat-option>
+              <mat-option *ngFor="let item of Clubs; let i=index" (click)="onChangeofOptions(item,'teama')">{{item}}</mat-option>    
+            </mat-select>
+          <mat-error *ngIf="isValidField('teams','item')">Select a Team</mat-error>
+        </mat-form-field> 
+  
+        <mat-form-field  class="input"  appearance="fill">
+          <mat-label >Score</mat-label>
+          <input matInput type="text"  formControlName="score" [readonly]="readonly">
+          <input matInput  *ngIf='readonlymagic' readonly>
+        </mat-form-field> 
+  
+        <mat-form-field class="input"  appearance="fill">
+          <mat-label >Team B</mat-label>
+          <input matInput type="text" (ngModelChange)="teamsfilterItem($event)" 
+                 formControlName="teamb" [readonly]="readonly">
+            <mat-select #teambselect  *ngIf="!readonly" >
+              <mat-option value="empty"></mat-option>
+              <mat-option *ngFor="let item of Clubs; let i=index" (click)="onChangeofOptions(item,'teamb')">{{item}}</mat-option>    
+            </mat-select>
+            <mat-error *ngIf="isValidField('teams','item')">Select a Team</mat-error>
+        </mat-form-field> <br>
+
+      </div>
+     
+      <div class="block" formGroupName="commissaire">
+        
+        <h2>Commissaire Report</h2>
+
+        <mat-form-field style="margin-left: 10px; width: 50%;" appearance="fill">
+          <mat-label >Motif</mat-label>
+          <input matInput type="text" id="Motif" formControlName="motif" [readonly]="readonly">
+        </mat-form-field> <br>
+
+        <mat-form-field style="margin-left: 10px; width: 45%;" appearance="fill">
+          <mat-label >Rapport</mat-label>
+          <input matInput type="text" id="Rapport" formControlName="rapport" [readonly]="readonly">
+        </mat-form-field> <br>
+
+        <mat-form-field class="textarea" appearance="fill">
+          <mat-label >Obs Referee</mat-label>
+          <textarea matInput style="direction: rtl;" rows="5" cols="60" type="text" 
+          id="ObsReferee"  formControlName="obsref" [readonly]="readonly"></textarea>
+        </mat-form-field> <br> <br> 
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Obs 1st Ass</mat-label>
+          <textarea matInput style="direction: rtl;" rows="2" cols="60"  type="text" 
+          id="ObsfstAss" formControlName="obsfass" [readonly]="readonly" ></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Obs 2nd Ass</mat-label>
+          <textarea matInput style="direction: rtl;" rows="2" cols="60"  type="text" 
+          id="ObssndAss" formControlName="obssass" [readonly]="readonly"></textarea>
+        </mat-form-field> <br> 
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Incident Team A</mat-label>
+          <input matInput type="text" id="IncidentEqA" formControlName="incteama" [readonly]="readonly" >
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label >Incident Team B</mat-label>
+          <input matInput type="text" id="IncidentEqB" formControlName="incteamb" [readonly]="readonly">
+        </mat-form-field> <br>
+
+      </div>
+
+      <!-- <div class="block" formGroupName="videos">
+        <h2>Videos</h2>
+        <mat-form-field class="videoinput" appearance="fill">
+          <mat-label >Video1</mat-label>
+          <input matInput type="text"  formControlName="video1" [readonly]="readonly">
+        </mat-form-field> 
+        <mat-form-field class="videoinput" appearance="fill">
+          <mat-label >Video2</mat-label>
+          <input matInput type="text" formControlName="video2" [readonly]="readonly">
+        </mat-form-field> <br>
+        <mat-form-field class="videoinput" appearance="fill">
+          <mat-label >Video3</mat-label>
+          <input matInput type="text" formControlName="video3" [readonly]="readonly">
+        </mat-form-field> 
+        <mat-form-field class="videoinput" appearance="fill">
+          <mat-label >Video4</mat-label>
+          <input matInput type="text" formControlName="video4" [readonly]="readonly">
+        </mat-form-field> <br>
+      </div> -->
+
+    </div>
+  </form>
+
+  <div class="separator">
+  </div>
+
+  <div class="ref-container"  [formGroup]="form">
+
+    <div class="sidefield" formGroupName="refereeslist">
+      <h2>Referees List</h2>
+
+      <mat-form-field class="sideinput" appearance="fill" >
+        <mat-label >Referee</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" 
+        formControlName="referee" [readonly]="readonly">
+          <mat-select *ngIf="!readonly" >
+          <mat-option value="empty"></mat-option>
+          <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'referee')">{{item}}</mat-option>    
+        </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >1st Assistant</mat-label>
+        <input matInput type="text"   (ngModelChange)="refereefilterItem($event)" 
+          formControlName="fassistant" [readonly]="readonly">
+          <mat-select  *ngIf="!readonly" >
+          <mat-option value="empty"></mat-option>
+          <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'fassistant')">{{item}}</mat-option>    
+        </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >2nd Assistant</mat-label>
+        <input matInput type="text"  (ngModelChange)="refereefilterItem($event)" 
+          formControlName="sassistant" [readonly]="readonly">
+          <mat-select *ngIf="!readonly" >
+            <mat-option value="empty"></mat-option>
+            <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'sassistant')">{{item}}</mat-option>    
+          </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >Fourth Official</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" 
+          formControlName="fofficial" [readonly]="readonly">
+          <mat-select *ngIf="!readonly" >
+            <mat-option value="empty"></mat-option>
+            <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'fofficial')">{{item}}</mat-option>    
+          </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >VAR / 1st Additional</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" formControlName="var" [readonly]="readonly">
+        <mat-select  *ngIf="!readonly" >
+          <mat-option value="empty"></mat-option>
+          <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'var')">{{item}}</mat-option>    
+        </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >AVAR / 2nd Additional</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" formControlName="avar" [readonly]="readonly">
+        <mat-select  *ngIf="!readonly" >
+            <mat-option value="empty"></mat-option>
+            <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'avar')">{{item}}</mat-option>    
+          </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >Operator</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" formControlName="operator" [readonly]="readonly">
+        <mat-select  *ngIf="!readonly" >
+          <mat-option value="empty"></mat-option>
+          <mat-option *ngFor="let item of Referees; let i=index" (click)="onChangeofOptions(item,'operator')">{{item}}</mat-option>    
+        </mat-select>
+      </mat-form-field> <br>
+  
+      <mat-form-field class="sideinput" appearance="fill">
+        <mat-label >Commissaire</mat-label>
+        <input matInput type="text" (ngModelChange)="refereefilterItem($event)" formControlName="commissaire" [readonly]="readonly">
+        <mat-select  *ngIf="!readonly" >
+          <mat-option value="empty"></mat-option>
+          <mat-option *ngFor="let item of Assessors; let i=index" (click)="onChangeofOptions(item,'commissaire')">{{item}}</mat-option>    
+        </mat-select>
+      </mat-form-field> <br>
+
+    </div>    
+
+    <div class="buttonssection">
+      <button class="btncancel" mat-stroked-button (click)="CancelForm()">Cancel</button>
+      <button class="btnsave" mat-raised-button color="primary" [disabled]="form.invalid" (click)="SaveForm()">Save</button>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+
+    <p style="padding: 5px; font-size: 19px;">Season selected: {{data.season}} </p>
+ 
+    <input [(ngModel)]='newCompetitionName'>
+    <button mat-raised-button style="width: 80px;" color="primary" (click)="setCompetition()">New</button>
+    
+    <section class="example-section">
+        <ul>
+          <li *ngFor="let item of data.competitions let i = index">
+            <mat-checkbox (change)="Competitionchanges(item)"
+                            [checked]="CompetitionChecks(item)">
+              {{item.competition}}
+            </mat-checkbox>
+          </li>
+        </ul>
+    </section>
+    
+
+
+
+</div>
+  
+

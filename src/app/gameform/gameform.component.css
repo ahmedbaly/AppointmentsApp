@@ -1,0 +1,136 @@
+form{
+    position: relative;
+    /* margin-left: 220px; */
+    margin-top: 20px;
+    font-size: medium;
+    background: white;
+  }
+  
+.gameform{
+  position: relative;
+  background: white;
+  height: 50%;
+}
+.example-form {
+  position: absolute;
+  /* min-width: 150px;
+  max-width: 680px; */
+  width: 100%;
+  background: white;
+}
+
+  .inputstadium{
+    width: 420px;
+    margin: 10px;
+  }
+
+  .inputround{
+    width: 150px;
+    margin: 10px;
+  }
+
+  .inputdate{
+    width: 250px;
+    margin: 10px;
+  }
+
+
+  .input{
+    width: 200px;
+    margin: 10px;
+  }
+  .sideinput{
+    /* background: brown; */
+    width: 100%;
+    /* margin-left: 10px; */
+  }
+  .videoinput{
+    width: 35%;
+    margin-right: 10px;
+    margin-left: 20px;
+  }
+  .textarea{
+    width: 640px;
+    height: 20px;
+    direction: rtl;
+    margin: 10px ;
+  }
+
+  .textareaass{
+    width: 35%;
+    height: 30px;
+    direction: rtl;
+    margin: 10px ;
+  }
+
+  .block{
+    background-color: #c9c9f35e;
+    padding: 10px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+  .match-container{
+    position: absolute;
+    background: white;
+  }
+
+  .separator{
+    position: absolute;
+    margin-left: 69%;
+    margin-top: 20px;
+    width: 2px;
+    background-color: rgb(18, 1, 163);
+    height: 1200px;
+  }
+
+  .ref-container{
+    position: absolute;
+    margin-left: 70%;
+    font-size: medium;
+    width: 25%;
+    background: white;
+  }
+
+  .sidefield{
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 20px;
+    background: white;
+  }
+
+  .buttonssection{
+    margin-top: 50px;
+  }
+
+  .btncancel{
+    margin-top: 50px;
+    width: 80%;
+    height: 50px;
+    float: right;
+    font-size: larger;
+    background: #c9c9f35e;
+  }
+
+  .btnsave{
+    margin-top: 50px;
+    width: 80%;
+    height: 50px;
+    float: right;
+    font-size: larger;
+  }
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}

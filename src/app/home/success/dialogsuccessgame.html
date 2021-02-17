@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>{{data.game.EquipeA}} vs {{data.game.EquipeB}}</h1>
+
+<div mat-dialog-content>
+  <div class="header">
+    <p>Referee: <br> {{data.game.Referee}}</p> 
+    <h4 *ngIf='disable'> {{getValue(sliderref)}}</h4>
+  </div>
+    <mat-slider #sliderref thumbLabel [displayWith]="formatLabel" tickInterval='1' [disabled]="disable"
+      min="1" max="10" step="1" value="{{successvalue}}"></mat-slider>
+      
+</div>
+
+<div mat-dialog-content>
+  <div class="header">
+    <p >1st Assistant: <br> {{data.game.Fassistant}}</p>
+    <h4 *ngIf='disable'> {{getValue(slider1as)}}</h4>
+  </div>  
+  <mat-slider #slider1as thumbLabel [displayWith]="formatLabel" tickInterval='1' [disabled]="disable"
+  min="1" max="10" step="1" value="{{successvalue}}"></mat-slider>
+</div>
+
+<div mat-dialog-content>
+  <div class="header">
+    <p>2nd Assistant: <br>{{data.game.sassistant}}</p>
+    <h4 *ngIf='disable'>{{getValue(slider2as)}}</h4>
+  </div>  
+  <mat-slider #slider2as thumbLabel [displayWith]="formatLabel" tickInterval='1' [disabled]="disable"
+  min="1" max="10" step="1" value="{{successvalue}}"></mat-slider>
+</div>
+
+<div mat-dialog-content>
+  <div class="header">
+    <p>VAR: <br>{{data.game.faddassistant}} </p>
+    <h4 *ngIf='disable'> {{getValue(slidervar)}}</h4>
+  </div>    
+  <mat-slider #slidervar thumbLabel [displayWith]="formatLabel" tickInterval='1' [disabled]="disable"
+  min="1" max="10" step="1" value="{{successvalue}}"></mat-slider>
+</div>
+
+<div mat-dialog-content>
+  <div class="header">
+    <p>AVAR: <br>{{data.game.saddassistant}} </p>
+    <h4 *ngIf='disable'>{{getValue(slideravar)}}</h4>
+  </div>      
+  <mat-slider #slideravar thumbLabel [displayWith]="formatLabel" tickInterval='1' [disabled]="disable"
+  min="1" max="10" step="1" value="{{successvalue}}"></mat-slider>
+</div>
+
+
+<div mat-dialog-actions style="float: right;">
+  <button  mat-stroked-button style="width: 80px;" (click)="closeDialog()" >Cancel</button>
+  <button  mat-raised-button style="width: 80px;" color="primary" (click)="SendNotes()" [disabled]="disable">Okay</button>
+</div>

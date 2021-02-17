@@ -1,0 +1,36 @@
+<div class="example-form">
+
+        <h1>{{data.name}}</h1>
+        <h2>Date: {{date}}</h2>
+
+
+        <div class="selectblock">
+          <mat-label>Session</mat-label>
+          <mat-select [(ngModel)]="data.training">
+            <mat-option (click)="sessionchanges($event)"></mat-option>
+            <mat-option *ngFor="let item of data.types; let i= index" (click)="sessionchanges(item)" style='font-size: large;'
+             [value]="item.training"> {{item.training}}          
+            </mat-option> 
+          </mat-select>
+        </div>
+
+        <div class="selectblock">
+          <mat-label>Color</mat-label>
+          <mat-select [(ngModel)]="data.color">
+            <mat-option (click)="colorschanges($event)"></mat-option>
+            <mat-option *ngFor="let color of data.colors; let i =index" (click)="colorschanges(color)" 
+             [value]="color.color" [ngStyle]="{'background-color': '#'+color.color}">{{color.color}}
+             </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="selectblockdescription">
+          <mat-label>Observation</mat-label>
+          <input class="inputdescription" [(ngModel)]="description" placeholder="Write an observation...">
+        </div>
+
+
+       <button mat-raised-button color='primary' class="submitBtn" (click)="saveSession()" >submit</button>
+      </div>
+  
+  

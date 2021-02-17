@@ -1,0 +1,93 @@
+<h1 mat-dialog-title>Add New English Session</h1>
+<div mat-dialog-content>
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+        <mat-step [stepControl]="firstFormGroup" label="Select Group">
+          <form [formGroup]="firstFormGroup">
+        
+            <mat-label >Select the date and the group</mat-label>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput (dateInput)="onSelectDate(enpicker)" [matDatepicker]="enpicker">
+              <mat-datepicker-toggle matSuffix (changes)="onSelectDate(enpicker)" [for]="enpicker"></mat-datepicker-toggle>
+              <mat-datepicker #enpicker></mat-datepicker>
+            </mat-form-field>
+            
+            <div>
+                <div class="mat-elevation-z8 tableGroups">
+                    <table mat-table [dataSource]="Groups" style="height: 200px;">
+        
+                      <ng-container matColumnDef="id" >
+                        <th mat-header-cell *matHeaderCellDef >No</th>
+                        <td style="width: 100px;" mat-cell *matCellDef="let row; let i = index;">{{i+1}}</td>
+                      </ng-container>
+                    
+                      <ng-container matColumnDef="group" >
+                        <th mat-header-cell *matHeaderCellDef>Group</th>
+                        <td style="width: 150px;" mat-cell *matCellDef="let row">{{row.name}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="date" >
+                        <th mat-header-cell *matHeaderCellDef>Check</th>
+                        <td style="width: 100px;" mat-cell *matCellDef="let row; let i = index;">
+                          <mat-radio-button class="example-radio-button" 
+                          (click)="Selectgroup(row)"></mat-radio-button>
+                        </td>
+                      </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>    
+            </div>
+            <br>
+            <div style="float:right">
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <mat-step [stepControl]="secondFormGroup" label="Affect Referees to group">
+            <form [formGroup]="secondFormGroup">
+
+            <h3>Referee Selected</h3>
+            <div class="mat-elevation-z8 tableReferees">
+              <table #table mat-table [dataSource]="Referees">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef>Id</th>
+                  <td mat-cell style="width: 60px;" *matCellDef="let row">{{row.ID}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.name}}</td>
+                </ng-container>
+                    
+                <ng-container matColumnDef="presence" >
+                  <th mat-header-cell *matHeaderCellDef>Presence</th>
+                  <td #check mat-cell style="width: 50px; padding-left: 10px;" *matCellDef="let row; let i = index;">
+                    <mat-checkbox (change)="selectPresence(row,i)" [checked]="row.presence">
+                </mat-checkbox>
+                  </td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="RefdisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: RefdisplayedColumns;"></tr>
+              </table>
+            </div>
+              
+            <br>
+            <div style="float:right">
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" (click)="newSession()">save</button>
+            </div>
+          </form>
+          
+        </mat-step>
+
+    </mat-horizontal-stepper>
+
+</div> 

@@ -1,0 +1,84 @@
+<form>
+
+  <h1>Competitions List</h1>
+
+
+  <div class="spacetables">
+
+    <div class="table1">
+      <p>Seasons</p> 
+      <button mat-raised-button style="width: 80px;" color="primary" (click)="Seasoncompetition('season','','add')">
+        <mat-icon>add</mat-icon>
+      </button>
+      <table class="mat-elevation-z8">
+      <mat-list *ngFor="let season of Seasons let i = index">
+        <mat-list-item (click)="getcompetitions(season)">
+          {{season.season}}
+          <mat-icon > keyboard_arrow_right</mat-icon>
+        </mat-list-item>
+      </mat-list>        
+      </table>
+    </div>
+
+    <div class="table2">
+      <p>Season selected: {{SeasonSelected.season}}</p>
+            
+      <button mat-raised-button style="width: 80px;" color="primary" 
+      (click)="Seasoncompetition('competition','','select')">Select</button>
+      <mat-icon style="float: right;" color="primary"  (click)="getComeptitionRefLevels()"
+          >settings</mat-icon>
+
+      
+      <table mat-table class="mat-elevation-z8"  matSort aria-label="Elements">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th style="width: 80px;" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let row">{{row.id_competition}}</td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th  mat-header-cell *matHeaderCellDef mat-sort-header>Competition</th>
+          <td mat-cell *matCellDef="let row">{{row.competition}}</td>
+        </ng-container>        
+
+        <ng-container matColumnDef="toClubs" >
+          <th style="width: 50px;" mat-header-cell *matHeaderCellDef>Clubs</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon (click)='getClubs(row)'>keyboard_arrow_right</mat-icon>
+          </td>
+        </ng-container>     
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+
+    <div class="table3">
+      <p>Clubs</p>
+      <button mat-raised-button style="width: 80px;" color="primary" (click)="Seasoncompetition('club','','')">Select</button> 
+      <table  class="mat-elevation-z8">
+        <mat-list >
+          <mat-list-item>
+            <td style='width: 30px; '>Pos</td>
+            <td style='width: 160px; text-align: center;'>Club</td>
+            <td style='width: 30px;'>Rnd</td>
+            <td style='width: 30px;'>Sco</td>
+            <td style='width: 10px;'></td>
+          </mat-list-item>
+          <mat-list-item *ngFor="let club of Clubs let i = index">
+            <td style='width: 30px;'>{{i+1}}</td>
+            <td style='width: 160px;'>{{club.name}}</td>
+            <td style='width: 30px;'>{{club.round}} </td>
+            <td style='width: 30px;'>{{club.score}}</td>
+            <td style='width: 10px;' (click)='updateClubStanding(club)'><mat-icon>more_vert</mat-icon> </td>
+          </mat-list-item>
+        </mat-list>
+      </table>  
+    </div>
+ 
+  </div>
+     
+</form>

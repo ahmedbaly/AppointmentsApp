@@ -1,0 +1,240 @@
+  form{
+    position: relative;
+    margin-left: 220px;
+    margin-top: 20px;
+    width: 100%;
+    min-width: 150px;
+    max-width: 1200px;
+  }
+
+  .example-form {
+    /* height: 700px; */
+    position: relative;
+    background: white;
+  }
+
+  .gamereport{
+    position: absolute;
+    width: 100%;
+    background: white;
+  }
+
+  
+  .separator{
+    position: absolute;
+    margin-left: 65%;
+    margin-top: 10px;
+    width: 2px;
+    background-color: rgb(1, 58, 163);
+    min-height: 400px;
+  }
+
+  .standings{
+    float: right;
+    position: absolute;
+    width: 280px;
+    margin-left: 67%;
+    padding: 10px;
+    background-color: #c9c9f35e;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+  }
+
+  .block{
+    position: relative;
+    background-color: #c9c9f35e;
+    width: 680px;
+    padding: 10px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+
+  .inputstadium{
+    width: 300px;
+    margin: 10px;
+  }
+
+  .inputround{
+    width: 150px;
+    margin: 10px;
+  }
+
+  .input{
+    width: 200px;
+    margin: 10px;
+  }
+ 
+  .undo{
+    float: right;
+    margin-top: 20px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+  .iconundo{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #387ef5;
+    border-radius: 50%;
+    color: white;
+  }
+
+  .gotoclub{
+    font-size: 14px;
+    border: 1px solid black; 
+    border-collapse: collapse;
+    width: 150px;
+    padding-left: 5px;
+  }
+
+  .gotoheader{
+    font-size: medium;
+    text-align: center  ;
+    border: 1px solid black; 
+    border-collapse: collapse;
+    background: blanchedalmond;
+  }
+
+  .gotocenter{
+    font-size: small;
+    text-align: center  ;
+    border: 1px solid black; 
+    border-collapse: collapse;
+    /* width: 100px; */
+  }
+  .gotocentert{
+    font-size: medium;
+    text-align: center;
+  }
+
+  
+  .tables{
+    position: relative;
+    padding: 10px;
+    margin-top: 80px;
+    /* border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231); */
+  }
+
+
+  .septable1{
+    font-size: 12px;
+    position: absolute;
+    width: 200px;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+  .septable2{
+    position: absolute;
+    width: 200px;
+    font-size: 12px;
+    margin-left: 18%;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+  .septable3{
+    position: absolute;
+    width: 200px;
+    margin-left: 36%;
+    font-size: 12px;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+  .septable4{
+    position: absolute;
+    width: 200px;
+    margin-left: 54%;
+    font-size: 12px;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+  .septable5{
+    position: absolute;
+    width: 200px;
+    font-size: 12px;
+    margin-left: 72%;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+  .septable6{
+    position: absolute;
+    width: 200px;
+    font-size: 12px;
+    margin-left: 90%;
+    background-color: #c9c9f35e;
+    padding: 5px;
+    border-radius: 10px ;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    margin-bottom: 20px;
+  }
+
+
+  .tab{
+    width: 98%;
+    position: absolute;
+    /* border-radius: 10px ; */
+    /* padding: 5px; */
+    text-align: center;
+    background: lightskyblue;
+  }
+
+  .scores{
+    width: 80% fixed;
+  }
+
+  .ClubsRow{
+    background-color: white;
+    text-align: center;
+    border: 1px solid rgba(51, 51, 51, 0.699);
+  }
+
+  .RefereesName{
+    text-align: center;
+    background-color: white;
+    border: 1px solid rgba(51, 51, 51, 0.699);
+  }
+
+  .bordertable{
+    background-color: white;
+    border: 1px solid rgba(51, 51, 51, 0.699);
+  }
+
+  .container{
+    background-color: #c9c9f35e;
+    border-radius: 10px 10px 10px 10px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom:  20px;
+  }
+
+  .containerScore{
+    width: 100%;
+    background-color: #c9c9f35e;
+    border-radius: 10px 10px 10px 10px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom:  20px;
+  }

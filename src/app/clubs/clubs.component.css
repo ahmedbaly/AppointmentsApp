@@ -1,0 +1,112 @@
+
+
+form{
+  position: relative;
+  margin-left: 220px;
+  background: white;
+}
+h1{
+  margin-top: 20px;
+  position: relative;
+}
+p{
+  margin-left: 10px;
+}
+
+
+table {
+  width: 250px;
+  margin-bottom: 20px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 30%;
+  }
+
+  .spacetables{
+    overflow: auto;
+  }
+
+  .table-2{
+    position: relative;
+    width: 260px;
+    float: left;;
+  }
+
+  .subtable{
+    position: relative;
+    float: left;
+  }
+
+  mat-table{
+    height: 300px ;
+    position: relative;
+  }
+
+  .example-container {
+    height: 430px;
+    width: 350px;
+    overflow: auto;
+  }
+  .sub-example-container{
+    height: 430px;
+    width: 800px;
+    overflow: auto;
+  }
+
+  .subsubtable{
+    width: 900px;
+    height: 400px;
+    text-align: center;
+  }
+
+  .totheleft{
+    text-align: left;
+    /* cursor: pointer; */
+
+  }
+
+  .totheright{
+    text-align: right;
+    cursor: pointer;
+
+  }
+  .tothecenter{
+    text-align: center;
+  }
+
+  mat-icon{
+    cursor: pointer;
+  }
+
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding-left: 8px;
+    padding-right: 10px;
+  }
+  
+  .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  }
+
+  .subtableicon{
+    float: left; 
+    margin-right: 35px; 
+    margin-top: 220px; 
+    font-size: 40px;
+  }
+
+  .subsubtableicon{
+    float: left; 
+    margin-right: 35px; 
+    margin-top: 220px; 
+    font-size: 40px;
+  }

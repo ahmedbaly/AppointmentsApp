@@ -1,0 +1,363 @@
+<div style="position: relative; background: white;">
+
+  <form class="example-form">
+    <div class="gamereport">
+      <h1>Game Report</h1>
+      <div class="block">
+          <mat-accordion class="example-headers-align">
+              <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    General Informations
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Round/Competition/Games
+                    <mat-icon>info</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+
+                <mat-form-field class="input" appearance="fill">
+                  <mat-label >Seasons</mat-label>
+                  <input matInput type="text" [(ngModel)]="season" name="season" readonly required>
+                  <mat-select #seasonselect >
+                    <mat-option value="empty"></mat-option>
+                    <mat-option *ngFor="let item of Seasons" (click)="getcompetitions(item)">{{item.season}}</mat-option>    
+                  </mat-select>
+                </mat-form-field> 
+            
+                <mat-form-field class="input" appearance="fill">
+                  <mat-label >Competition</mat-label>
+                  <input matInput type="text" [(ngModel)]="competition" name="competition" readonly required>
+                  <mat-select #competitionselect >
+                    <mat-option value="empty"></mat-option>
+                    <mat-option *ngFor="let item of competitions" (click)="onChangeofOptions(item,'competition','j','')">{{item.competition}}</mat-option>    
+                  </mat-select>
+                </mat-form-field> <br>
+  
+                  <mat-form-field *ngIf="league" class="inputround" appearance="fill">
+                    <mat-label >Round</mat-label>
+                    <input matInput   [(ngModel)]="round" name="round" type="number" min="1" max="25"  required>
+                    <input matInput  readonly>
+                    <!-- <mat-error *ngIf="isValidField('round','gamedetails.round')">Enter a Round or select from 1 to 25.</mat-error> -->
+                  </mat-form-field> 
+
+                  <mat-form-field *ngIf="!league" class="inputround" appearance="fill">
+                    <mat-label >Round</mat-label>
+                    <input matInput type="text" [(ngModel)]="round" name="round" required>
+                    <mat-select #roundselect (click)="onChangeofOptions(round,'round','j','')">
+                      <mat-option value="empty"></mat-option>
+                      <mat-option *ngFor="let item of cuprounds" (click)="onChangeofOptions(item,'round','j','')">{{item}}</mat-option>    
+                    </mat-select>
+                  </mat-form-field> 
+  
+  
+                  <mat-form-field class="inputround" appearance="fill">
+                    <mat-label >Game(s)</mat-label>
+                    <input matInput  [(ngModel)]="game" name="game"  type="number" min="1" max="12"  required
+                    (ngModelChange)="onChangeofOptions(game,'game','j','')">
+                    <input matInput readonly>
+                    <!-- <mat-error *ngIf="isValidField('match','gamedetails.round')">Enter the number of games or select from 1 to 6.</mat-error> -->
+                  </mat-form-field> 
+  
+                <mat-action-row>
+                  <button mat-button color="primary" (click)="nextStep()">Next</button>
+                </mat-action-row>
+              </mat-expansion-panel>
+            
+              <div  *ngFor="let k of [].constructor(game); let j=index">
+                <div *ngIf="game > 0">
+                  <mat-expansion-panel [expanded]="step === j+1" (opened)="setStep(j+1)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Match N°{{j+1}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                          Details
+                        <mat-icon>receipt</mat-icon>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+  
+                    <mat-form-field class="inputstadium" appearance="fill">
+                      <mat-label >Stadium</mat-label>
+                      <input matInput type="text" [(ngModel)]="stadium[j]" (ngModelChange)="StadiumfilterItem($event)" name="{{'stadium' + j}}">
+                      <mat-select #stadiumselect >
+                          <mat-option value="empty"></mat-option>
+                          <mat-option *ngFor="let item of stadiums" (click)="onChangeofOptions(item,'stadiums','',j)">{{item}}</mat-option>    
+                      </mat-select>
+                      </mat-form-field> <br>
+      
+                      <mat-form-field  appearance="fill">
+                        <mat-label>Date</mat-label>
+                        <input  matInput [matDatepicker]="picker1" readonly  [(ngModel)]="date[j]" name="{{'date' + j}}"
+                        (ngModelChange)="onChangeofOptions(date[j],'date','',j)" >
+                        <mat-datepicker-toggle  matSuffix  [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker><br>
+                      </mat-form-field>
+  
+                      <mat-form-field  appearance="fill">
+                        <mat-label>Time</mat-label>
+                         <input matTimepicker #t="matTimepicker"  [(ngModel)]="time[j]" name="{{'time' + j}}"
+                           mode="24h" (ngModelChange)="onChangeofOptions(time[j],'time','',j)" >
+
+                      </mat-form-field>
+
+
+                      <br>
+      
+                      <mat-form-field class="input" appearance="fill">
+                      <mat-label >Team A</mat-label>
+                      <input matInput type="text" [(ngModel)]="teamA[j]" (ngModelChange)="teamsfilterItem($event)" readonly name="{{'teamA' + j}}" >
+                        <mat-select #teamaselect  >
+                          <mat-option value="empty"></mat-option>
+                          <mat-option *ngFor="let item of Clubs; let i=index" (click)="onChangeofOptions(item,'teama',i,j)" 
+                          [disabled]="checkifExist(item)">{{item.name}}</mat-option>      
+                        </mat-select>
+                      <!-- <mat-error *ngIf="isValidField('teams','item')">Select a Team</mat-error> -->
+                      </mat-form-field> 
+      
+      
+                      <mat-form-field class="input"  appearance="fill">
+                      <mat-label >Team B</mat-label>
+                      <input matInput type="text" [(ngModel)]="teamB[j]" (ngModelChange)="teamsfilterItem($event)" readonly name="{{'teamB' + j}}">
+                          <mat-select #teambselect  >
+                          <mat-option value="empty"></mat-option>
+                          <mat-option *ngFor="let item of Clubs; let i=index" (click)="onChangeofOptions(item,'teamb',i,j)" 
+                          [disabled]="checkifExist(item)">{{item.name}}</mat-option>    
+                          </mat-select>
+                          <!-- <mat-error *ngIf="isValidField('teams','item')">Select a Team</mat-error> -->
+                      </mat-form-field> 
+  
+                      <div class="undo">
+                        <mat-icon class="iconundo" (click)="Undo(j)">undo</mat-icon><br>
+                        <mat-label >undo</mat-label>
+                      </div> 
+                      
+                      <mat-action-row>
+                      <button mat-button *ngIf="j > 0" color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button *ngIf="game-1 !== j" color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+              </div>
+  
+            </mat-accordion>
+            <button mat-raised-button style="position: relative; margin-top: 10px; margin-left: 520px;"
+             color="primary" (click)="getAppointments()">Appointments</button>
+      </div>
+
+     <div class="containerScore" *ngIf="Appointments.length > 0" >
+
+        <mat-tab-group mat-align-tabs="center" >
+          <mat-tab *ngFor=" let item of Appointments; let i = index">
+            <ng-template mat-tab-label>P°{{item.difference}}</ng-template>
+              <div>
+                <h2>Match: {{item.teamA}} vs {{item.teamB}} </h2>                
+                <h2>Date: {{getMatchDate(item.date,item.time)}}</h2>
+
+      
+                <tr>
+                  <th>Referee:</th>
+                  <th>{{item.referee}}</th>
+                  <th>{{item.scoreRef}}</th>
+                </tr>
+                <tr>
+                  <th>1st Assistant:</th>
+                  <th>{{item.fassistant}}</th>
+                  <th>{{item.scoreFass}}</th>
+
+                </tr>
+                <tr>
+                  <th>2nd Assistant:</th>
+                  <th>{{item.sassistant}}</th>
+                  <th>{{item.scoreSass}}</th>
+                </tr>
+                <tr>
+                  <th>Fourth Official:</th>
+                  <th>{{item.fourth}}</th>
+                  <th>{{item.scoreFourth}}</th>
+                </tr>
+                <tr>
+                  <th>VAR: </th>
+                  <th>{{item.faddassistant}}</th>
+                  <th>{{item.scoreFadd}}</th>
+                </tr>
+                <tr>
+                  <th>AVAR:</th>
+                  <th>{{item.saddassistant}}</th>
+                  <th>{{item.scoreSadd}}</th>
+                </tr>
+              </div>
+          </mat-tab>
+          <mat-tab >
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">keyboard_arrow_up</mat-icon>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+      <div class="containerScore">
+
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="Referees">
+            <div  *ngIf="RefereesScores.length > 0" >
+              <h2 style="text-align: center;">Referees Scores</h2>
+              <div>
+                <tr>
+                  <th class="RefereesName">N°</th>
+                  <th class="RefereesName">Name</th>
+                  <th *ngFor="let club of Clubs ; let i = index" class="ClubsRow">{{club.name}}</th>
+                  <th class="bordertable">Motif</th>
+    
+                </tr>
+                <tr  *ngFor="let item of origRefs ; let i = index" >
+                  <th class="RefereesName">{{i+1}}</th>
+                  <th [ngStyle]="{'background-color':item.appointed === 'Appointed' ? 'white' : 'red' }"
+                      class="bordertable" >{{item.name}}</th>
+                  <th [ngStyle]="{'background-color': getRefScore(club,item) === onColNameChange(club) ? 'green' : 'white' }"  
+                    *ngFor="let club of Clubs ; let j = index" class="ClubsRow">{{getData(club,item)}}</th>
+                  <th class="bordertable">{{item.motif}}</th>
+                </tr>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Assistants">
+            <div *ngIf="AssistantsScores.length > 0" >
+              <h2 style="text-align: center;">Assistants Scores</h2>
+              <div>
+                <tr>
+                  <th class="RefereesName">N°</th>
+                  <th class="RefereesName">Name</th>
+                  <th *ngFor="let club of Clubs ; let i = index" class="ClubsRow">{{club.name}}</th>
+                  <th class="bordertable">Motif</th>
+                </tr>
+                <tr  *ngFor="let item of origAss ; let i = index" >
+                  <th class="RefereesName">{{i+1}}</th>
+                  <th [ngStyle]="{'background-color':item.appointed === 'Appointed' ? 'white' : 'red' }"
+                      class="bordertable">{{item.name}}</th>
+                  <th [ngStyle]="{'background-color': getAssScore(club,item) === onColAssisChange(club) ? 'green' : 'white' }"  
+                    *ngFor="let club of Clubs ; let j = index" class="ClubsRow">{{getDataAssistant(club,item)}}</th>
+                  <th class="bordertable">{{item.motif}}</th>
+                </tr>
+              </div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Fourth">
+            <div *ngIf="FourthScores.length > 0" >
+              <h2 style="text-align: center;">Fourth Officials Scores</h2>
+              <div>
+                <tr>
+                  <th class="RefereesName">N°</th>
+                  <th class="RefereesName">Name</th>
+                  <th *ngFor="let club of Clubs ; let i = index" class="ClubsRow">{{club.name}}</th>
+                  <th class="bordertable">Motif</th>
+                </tr>
+                <tr  *ngFor="let item of origFourth ; let i = index" >
+                  <th class="RefereesName">{{i+1}}</th>
+                  <th [ngStyle]="{'background-color':item.appointed === 'Appointed' ? 'white' : 'red' }"
+                      class="bordertable">{{item.name}}</th>
+                  <th [ngStyle]="{'background-color': getFourthScore(club,item) === onColFourthChange(club) ? 'green' : 'white' }"  
+                    *ngFor="let club of Clubs ; let j = index" class="ClubsRow">{{getDataFourth(club,item)}}</th>
+                  <th class="bordertable">{{item.motif}}</th>
+                </tr>
+              </div>
+            </div>
+          </mat-tab>
+
+
+          <mat-tab >
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">keyboard_arrow_up</mat-icon>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+
+      </div>
+
+
+
+      <div class="tables"> 
+        <div class="septable1">
+          <tr class="tab">
+            <th class="gotocentert">Refs</th>
+          </tr>
+          <tr *ngFor="let item of ref[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div>
+
+        <div class="septable2">
+          <tr class="tab">
+            <th class="gotocentert">Assistants</th>
+          </tr>
+          <tr *ngFor="let item of ass[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div>
+
+        <div class="septable3">
+          <tr class="tab">
+            <th class="gotocentert">Fourth Officials</th>
+          </tr>
+          <tr *ngFor="let item of fou[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div>
+
+        <div class="septable4">
+          <tr class="tab">
+            <th class="gotocentert">VAR</th>
+          </tr>
+          <tr *ngFor="let item of Var[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div> 
+
+        <div class="septable5">
+          <tr class="tab">
+            <th class="gotocentert">AVARs</th>
+          </tr>
+          <tr *ngFor="let item of ava[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div>
+
+        <div class="septable6">
+          <tr class="tab">
+            <th class="gotocentert">Operators</th>
+          </tr>
+          <tr *ngFor="let item of ope[0]; let i = index" >
+            <th *ngIf="15>i">{{item.name}}</th>
+          </tr>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator">
+    </div>
+
+    <div class="standings">
+      <h2 style="text-align: center;">STANDINGS</h2>
+      <div>
+        <tr>
+          <th class="gotoheader">Stgs</th>
+          <th class="gotoheader">Club</th>
+          <th class="gotoheader">Rnd</th>
+          <th class="gotoheader">Pts</th>
+        </tr>
+        <tr  *ngFor="let item of Clubs ; let i = index" >
+          <th class="gotocenter">{{i + 1 }}</th>
+          <th class="gotoclub">{{item.name}}</th>
+          <th class="gotocenter">{{item.round}}</th>
+          <th class="gotocenter">{{item.score}}</th>
+        </tr>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</div>

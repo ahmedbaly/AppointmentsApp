@@ -1,0 +1,87 @@
+form{
+    position: relative;
+    margin-left: 220px;
+    background: white;
+}
+h1{
+    margin-top: 20px;
+    position: relative;
+}
+p{
+    margin-left: 10px;
+}
+
+.table {
+    width: 85%;
+    margin-top: 60px;
+    margin-left: 50px ;
+    margin-right: 20px ;
+    margin-bottom: 20px ;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 50%;
+  }
+
+    .subtable{
+      position: relative;
+      float: left;
+    }
+  
+  
+    .example-container {
+      height: 430px;
+      width: 1100px;
+      overflow: auto;
+      margin-top: 50px;
+      margin-bottom: 200px;
+    }
+
+    .totheleft{
+        text-align: left;
+      }
+      
+    .totheright{
+      text-align: right;
+    }
+    .tothecenter{
+      text-align: center;
+    }
+    
+    .competition{
+      width: 150px;
+      text-align: center;
+      background-color:rgb(235, 232, 232) ;
+    }
+      
+    .grey{
+      width: 200px ;
+      background-color:rgb(235, 232, 232) ;
+    }
+    
+    .team{
+      width: 200px ;
+    }
+    
+    .teamb{
+      background-color:rgb(235, 232, 232) ;
+      width: 200px ;
+    }
+      
+  
+    mat-icon{
+      cursor: pointer;
+    }
+  
+  .available{
+    color: white;
+    background: red;
+    font-size: medium;
+  }
+
+  .addfab{
+    float: right;
+    margin-bottom: 50px;
+    margin-right: 50px;
+  }

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.dialogtype}}</h1>
+<div mat-dialog-content>
+
+  <p style="padding: 5px; font-size: 19px;">
+  </p>
+
+  <section class="example-section">
+    <h2>{{Message}} </h2>
+
+      <input matInput value="{{data.name}}" (keyup)='inputchanges($event)'> 
+        
+  </section>
+
+
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button  mat-stroked-button style="width: 80px;" (click)="closeDialog()">Cancel</button>
+  <button [disabled]='emptyinput' mat-raised-button style="width: 80px;" color="primary" (click)="confirmDialog()">Confirm</button>
+</div>

@@ -1,0 +1,490 @@
+<form >
+  <h1>Weekly Sessions</h1>
+
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" (click)="NavChanged('T')">Training</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="NavChanged('E')">English</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="NavChanged('D')">Debriefing</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" (click)="NavChanged('W')">Weight/Height</a>
+      </li> -->
+    </ul>
+  </div>
+
+
+  <!-- **************************** TRAINING SESSION ************************************* -->
+  <div *ngIf='training' >
+    <div class="example-container mat-elevation-z8">
+
+      <div>
+          <div class="searchcalendar">
+            <div class="searchmonth">
+              <h3>Search by Month: {{DateTitle}} </h3>
+              <mat-form-field  appearance="fill">
+              <mat-label>Month</mat-label>
+              <input matInput [matDatepicker]="picker" >
+              <mat-datepicker-toggle  matSuffix  [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker
+                                startView="year"
+                                (monthSelected)="chosenMonthHandler($event, picker)"
+                                panelClass="example-month-picker"></mat-datepicker><br>
+            </mat-form-field>
+
+            </div>
+    
+            <!-- <div class="searchdays">
+              <h3>Search by days</h3>
+            <mat-form-field  appearance="fill">
+              <mat-label>Start day</mat-label>
+              <input #startdate matInput [matDatepicker]="picker1" readonly >
+              <mat-datepicker-toggle  matSuffix  [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1
+                                startView="year"
+                                (yearSelected)="chosenYearHandler($event)"
+                                (monthSelected)="chosenMonthHandler($event, picker1)"
+                                panelClass="example-month-picker"></mat-datepicker><br>
+            </mat-form-field>
+    
+            <mat-form-field  appearance="fill">
+              <mat-label>Last day</mat-label>
+              <input #enddate matInput [matDatepicker]="picker2" readonly >
+              <mat-datepicker-toggle  matSuffix  [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2
+                                startView="year"
+                                (yearSelected)="chosenYearHandler($event)"
+                                (monthSelected)="chosenMonthHandler($event, picker2)"
+                                panelClass="example-month-picker"></mat-datepicker><br>
+            </mat-form-field>
+            </div> -->
+          </div>
+
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(0)">General</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(1)">International</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(2)">Elite</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(3)">Senior</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(4)">Junior</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(5)">Aspire</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="tabChanged(6)">Rookie</a>
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="tabsSelection[1]">
+          <h2>International</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="interRefs" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index"  
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="interAss" class="mat-elevation-z8">
+            
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    
+        <div *ngIf="tabsSelection[2]">
+          <h2>Elite</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="eliteRefs" class="mat-elevation-z8">
+            
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="eliteAss" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    
+        <div *ngIf="tabsSelection[3]">
+          <h2>Senior</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="seniRefs" class="mat-elevation-z8">
+          
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="seniAss" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    
+        <div *ngIf="tabsSelection[4]">
+          <h2>Junior</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="juniRefs" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="juniAss" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    
+    
+        <div *ngIf="tabsSelection[5]">
+          <h2>Aspire</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="aspiRefs" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="aspiAss" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    
+        <div *ngIf="tabsSelection[6]">
+          <h2>Rookies</h2>
+          <h3>Referees</h3>
+          <table mat-table [dataSource]="rookRefs" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <h3 style="margin-top: 20px;">Assistants</h3>
+          <table mat-table [dataSource]="rookAss" class="mat-elevation-z8">
+
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                [ngStyle]="{'background-color': WeekendColor(column) ? 'green' : 'white' }">{{column}}</th>
+              <td mat-cell  *matCellDef="let element; let i = index" style="text-align: center;" 
+                [ngStyle]="{'background-color': SessionColor(element,column)}"
+                (click)='opensession(element,column)' >{{getData(element,column,i)}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- **************************** ENGLISH SESSION ************************************* -->
+
+
+  <div *ngIf='english' >
+    <h2>English Sessions</h2>
+    <div class="example-container mat-elevation-z8">
+
+        <div class="example-button-row">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput (dateInput)="onSelectDate(enpicker)" [matDatepicker]="enpicker">
+              <mat-datepicker-toggle matSuffix (changes)="onSelectDate($event)" [for]="enpicker"></mat-datepicker-toggle>
+              <mat-datepicker #enpicker></mat-datepicker>
+            </mat-form-field>
+
+
+            <button  mat-raised-button color="primary" (click)="configGroups()">Groups</button>
+
+            <button  mat-raised-button color="primary" (click)="configSessions()">Sessions</button>
+
+        </div>
+
+        <div style="display: grid;
+                    grid-template-rows: 100px 2000px ;
+                    grid-template-columns: 400px 500px ;">
+
+          <table mat-table #englishtable class="mat-elevation-z8 englishtable" [dataSource]="EnglishSessions" >
+
+            <ng-container matColumnDef="no">
+              <th mat-header-cell *matHeaderCellDef>No</th>
+              <td mat-cell style="width: 50px;" *matCellDef="let row;">{{row.id}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="date" >
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell style="width: 150px;" *matCellDef="let row">{{getDateForm(row.date)}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="group" >
+              <th mat-header-cell  *matHeaderCellDef>Group</th>
+              <td mat-cell style="width: 350px;" *matCellDef="let row">{{row.name}}
+                <mat-icon (click)="onGroupSelect(row)" style="float: right;">keyboard_arrow_right</mat-icon>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="EngdisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: EngdisplayedColumns;"></tr>
+          </table>
+
+          <div *ngIf='presence' class="tableReferees">
+            
+            <h3>Absent</h3>
+            <div class="mat-elevation-z8 tableReferees">
+              <table #table mat-table [dataSource]="EnglishSessionsSesAbs">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef>Id</th>
+                  <td mat-cell style="width: 60px;" *matCellDef="let row">{{row.id_referee}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.referee}}</td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="RefdisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: RefdisplayedColumns;"></tr>
+              </table>
+            </div>
+
+
+            <h3>Present</h3>
+            <div class="mat-elevation-z8 tableReferees">
+              <table #table mat-table [dataSource]="EnglishSessionsSesPre">
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef>Id</th>
+                  <td mat-cell  style="width: 60px;" *matCellDef="let row">{{row.id_referee}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.referee}}</td>
+                </ng-container>
+          
+                <tr mat-header-row *matHeaderRowDef="RefdisplayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: RefdisplayedColumns;"></tr>
+              </table>
+            </div>
+            
+
+
+
+          </div>
+
+        </div>
+        
+
+      </div>
+
+  </div>
+
+  <!-- **************************** DEBRIEFING SESSION ************************************* -->
+
+
+  <div *ngIf='debriefing' >
+    <h2>Debriefing Sessions</h2>
+    <div class="example-container mat-elevation-z8">
+      <div class="example-button-row">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput (dateInput)="onSelectDateDebriefing(enpickerDeb)" [matDatepicker]="enpickerDeb">
+          <mat-datepicker-toggle matSuffix (changes)="onSelectDateDebriefing($event)" [for]="enpickerDeb"></mat-datepicker-toggle>
+          <mat-datepicker #enpickerDeb></mat-datepicker>
+        </mat-form-field>
+
+        <button  mat-raised-button color="primary" (click)="configGroupsDebriefing()">Groups</button>
+
+        <button  mat-raised-button color="primary" (click)="configSessionsDebriefing()">Sessions</button>
+
+      </div>
+
+      <div style="display: grid;
+                  grid-template-rows: 100px 2000px ;
+                  grid-template-columns: 400px 500px ;">
+
+        <table mat-table class="mat-elevation-z8 englishtable" [dataSource]="DebriefingSessions" >
+
+          <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef>No</th>
+            <td mat-cell style="width: 50px;" *matCellDef="let row; let i = index;">{{row.id}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="date" >
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell style="width: 150px;" *matCellDef="let row">{{getDateFormDebriefing(row.date)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="group" >
+            <th mat-header-cell  *matHeaderCellDef>Group</th>
+            <td mat-cell style="width: 350px;" *matCellDef="let row">{{row.name}}
+              <mat-icon (click)="onSelectGroupDebriefing(row)" style="float: right;">keyboard_arrow_right</mat-icon>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="EngdisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: EngdisplayedColumns;"></tr>
+        </table> 
+        
+       <div *ngIf='debpresence' class="tableReferees">
+          <h3>Absent</h3>
+          <div class="mat-elevation-z8 tableReferees">
+            <table #table mat-table [dataSource]="DebriefingSessionsSesAbs">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell style="width: 60px;" *matCellDef="let row">{{row.id_referee}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.referee}}</td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="DebdisplayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: DebdisplayedColumns;"></tr>
+            </table>
+          </div>
+
+          <h3>Present</h3>
+          <div class="mat-elevation-z8 tableReferees">
+            <table #table mat-table [dataSource]="DebriefingSessionsSesPre">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell  style="width: 60px;" *matCellDef="let row">{{row.id_referee}}</td>
+              </ng-container>
+          
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell style="width: 200px;" *matCellDef="let row">{{row.referee}}</td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="DebdisplayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: DebdisplayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+       
+      </div>
+        
+
+    </div>
+  </div>
+
+</form>

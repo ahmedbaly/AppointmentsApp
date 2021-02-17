@@ -1,0 +1,137 @@
+form{
+  position: relative;
+  margin-left: 220px;
+  margin-right: 20px;
+  margin-bottom: 80px;
+  background: white;
+}
+.example-container {
+  height: 600px;
+  overflow: auto;
+}
+
+h1{
+  margin-top: 20px;
+  position: relative;
+}
+p{
+  margin-left: 10px;
+}
+
+table {
+  width: 100%;
+  /* margin: 20px auto; */
+  
+}
+th,td{
+  text-align: center;
+}
+
+.totheleft{
+  text-align: left;
+}
+
+.totheright{
+  text-align: right;
+}
+.tothecenter{
+  text-align: center;
+}
+
+.competition{
+  width: 100px;
+  text-align: center;
+  background-color:rgb(235, 232, 232) ;
+
+}
+
+.grey{
+  background-color:rgb(235, 232, 232) ;
+}
+
+.team{
+  width: 100px ;
+}
+
+.teamb{
+  background-color:rgb(235, 232, 232) ;
+  width: 100px ;
+}
+
+.obsref{
+width: 30px;
+height: 20px fixed;
+}
+.mat-form-field {
+  font-size: 15px;
+  width: 50%;
+  margin : 10px;
+  }
+
+  /* .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  } */
+
+
+  td.mat-column-star {
+    width: 30px;
+    padding-right: 8px;
+  }
+
+  mat-icon{
+    cursor: pointer;
+  }
+
+  th.mat-column-id, td.mat-column-id {
+    text-align: center;
+    width: 50px;
+  }
+
+  th.mat-column-round, td.mat-column-round {
+    text-align: center;
+    width: 50px;
+  }
+  
+  th.mat-column-referee, td.mat-column-referee {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-fassistant, td.mat-column-fassistant {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-sassistant, td.mat-column-sassistant {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-fourth, td.mat-column-fourth {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-faddassistant, td.mat-column-faddassistant {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-saddassistant, td.mat-column-saddassistant {
+    text-align: center;
+    width: 150px;
+  }
+
+  th.mat-column-refereeobs, td.mat-column-refereeobs {
+    text-align: center;
+    width: 150px;
+  }
+  th.mat-column-details, td.mat-column-details {
+    text-align: center;
+    width: 150px;
+  }
+

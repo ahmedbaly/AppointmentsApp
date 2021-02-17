@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Referee: {{data.name}}</h1>
+<div mat-dialog-content>
+
+  <p style="padding: 5px; font-size: 19px;"></p>
+
+  <section class="example-section">
+      <ul *ngIf='this.data.type'>
+        <li *ngFor="let levels of data.levels let i = index">
+            <mat-radio-button (change)="Levelchanges(levels)"
+                              [checked]="LevelChecks(levels.levels,i)">
+                              {{levels.levels}}
+            </mat-radio-button>
+        </li>
+      </ul>
+
+      <ul *ngIf='!this.data.type'>
+        <li *ngFor="let natures of data.natures let i = index">
+          <mat-checkbox (change)="Naturechanges(natures)"
+                          [checked]="NatureChecks(natures.nature,i)">
+            {{natures.nature}}
+          </mat-checkbox>
+        </li>
+      </ul>
+
+  </section>
+
+
+</div>
+<!-- <div *ngIf='this.data.type' mat-dialog-actions style="float: right;">
+  <button  mat-raised-button style="width: 80px;" color="primary" (click)="Levelschanges()">Okay</button>
+</div> -->
