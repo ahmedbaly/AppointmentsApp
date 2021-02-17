@@ -55,7 +55,7 @@
   <mat-divider></mat-divider>  
   <div>
     <p style="position: relative;">Referees:</p><br>
-    <div>
+    <div style="padding: 10px; margin: 10px;">
       <div *ngFor="let item of Referees ; let i = index;">
         <mat-checkbox [checked]="item.check" (change)="checkRef(i)">{{item.role}}: {{item.name}}</mat-checkbox> 
         <button *ngIf="item.check" mat-button style="float: right;" (click)="picker.open()">

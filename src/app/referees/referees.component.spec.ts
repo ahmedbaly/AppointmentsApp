@@ -6,6 +6,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DataproviderService } from '../dataprovider.service';
+import { LevelRefereeDialog } from './LevelReferee';
 
 import { RefereesComponent } from './referees.component';
 
@@ -15,7 +16,7 @@ describe('RefereesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RefereesComponent ],
+      declarations: [ RefereesComponent, LevelRefereeDialog ],
       providers : [DataproviderService],
       imports: [
         HttpClientModule,
