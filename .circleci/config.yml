@@ -1,8 +1,10 @@
-version: 2.1
+version: 2
 jobs:
   build:
     docker:
       - image: circleci/node:8-browser
+
+      working_directory: ~/repo
 steps:
       - checkout
 
