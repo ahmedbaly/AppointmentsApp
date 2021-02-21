@@ -6,9 +6,9 @@ import { HttpClient,  } from '@angular/common/http';
 import { RefereesItem, RefereesDataSource } from './referees-datasource';
 import { RefereesMatchItem, RefereesMatchDataSource } from './referees-matchs-datasource';
 import { DataproviderService } from '../dataprovider.service';
-import { LevelRefereeDialog } from './LevelReferee';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
+import { LevelRefereeDialog } from './LevelReferee';
 
 @Component({
   selector: 'app-referees',
