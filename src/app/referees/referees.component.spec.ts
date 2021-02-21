@@ -19,7 +19,7 @@ describe('RefereesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       
-      declarations: [ RefereesComponent],
+      declarations: [ RefereesComponent, LevelRefereeDialog],
       providers : [    
         {provide: APP_BASE_HREF, useValue: '/'},
         { provide: MAT_DIALOG_DATA, useValue: {} },
