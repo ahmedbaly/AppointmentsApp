@@ -6,8 +6,9 @@ import { MatTableModule } from '@angular/material/table';
 
 import { CompetitionsComponent } from './competitions.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataproviderService } from '../dataprovider.service';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('CompetitionsComponent', () => {
   let component: CompetitionsComponent;
@@ -16,7 +17,11 @@ describe('CompetitionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CompetitionsComponent ],
-      providers : [DataproviderService],
+      providers :[    
+        {provide: APP_BASE_HREF, useValue: '/'},
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef , useValue: {} },
+        DataproviderService],
       imports: [
         HttpClientModule,
         NoopAnimationsModule,

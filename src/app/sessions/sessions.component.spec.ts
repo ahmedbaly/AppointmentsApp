@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SessionsComponent } from './sessions.component';
 import { DataproviderService } from '../dataprovider.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -18,10 +18,11 @@ describe('SessionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SessionsComponent ],
-      providers : [ 
+      providers : [    
         {provide: APP_BASE_HREF, useValue: '/'},
-        DataproviderService
-      ],
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef , useValue: {} },
+        DataproviderService],
       imports: [
         HttpClientModule,
         NoopAnimationsModule,

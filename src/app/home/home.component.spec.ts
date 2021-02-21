@@ -7,7 +7,8 @@ import { MatTableModule } from '@angular/material/table';
 import { HomeComponent } from './home.component';
 import { HttpClientModule  } from '@angular/common/http';
 import { DataproviderService } from '../dataprovider.service';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -16,7 +17,11 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      providers : [ DataproviderService],
+      providers : [    
+        {provide: APP_BASE_HREF, useValue: '/'},
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef , useValue: {} },
+        DataproviderService],
       imports: [
         HttpClientModule,
         NoopAnimationsModule,
