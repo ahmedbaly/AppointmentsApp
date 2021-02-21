@@ -1,18 +1,40 @@
 version: 2.0
 jobs:
-  build:
-    docker:
-      - image: circleci/node:12.14.0-browsers
+  build: 
+    working_directory: ~/repo
+    docker:     
+      - image: circleci/node:12.14.0-browsers    
+  
+    steps:     
+    - checkout
+    - run: yarn install
+    - save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+    - run: yarn ng build --prod
+    - run: yarn ng test --single-run
 
-      working_directory: ~/repo
-    steps:
-      - checkout
 
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn ng build --prod
-      - run: yarn ng test --single-run
+# version: 2.0
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/node:12.14.0-browsers
 
+#       working_directory: ~/repo
+#     steps:
+#       - checkout
+
+#       - run: yarn install
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "package.json" }}
+#       - run: yarn ng build --prod
+#       - run: yarn ng test --single-run
+
+
+
+# orbs:
+#   node: circleci/node@12.14.0-browsers
