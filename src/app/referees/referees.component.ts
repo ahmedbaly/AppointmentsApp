@@ -6,7 +6,6 @@ import { HttpClient,  } from '@angular/common/http';
 import { RefereesItem, RefereesDataSource } from './referees-datasource';
 import { RefereesMatchItem, RefereesMatchDataSource } from './referees-matchs-datasource';
 import { DataproviderService } from '../dataprovider.service';
-import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 import { LevelRefereeDialog } from './LevelReferee';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
