@@ -1,7 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -24,6 +24,7 @@ describe('RefereesComponent', () => {
         {provide: APP_BASE_HREF, useValue: '/'},
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef , useValue: {} },
+        { provide: MatDialog, useClass: LevelRefereeDialog }, //look this
         DataproviderService],
       imports: [
         HttpClientModule,
