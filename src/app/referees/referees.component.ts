@@ -8,7 +8,7 @@ import { RefereesMatchItem, RefereesMatchDataSource } from './referees-matchs-da
 import { DataproviderService } from '../dataprovider.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
-import { LevelRefereeDialog } from './levelreferee/levelreferee';
+// import { LevelRefereeDialog } from './levelreferee/levelreferee';
 
 @Component({
   selector: 'app-referees',
@@ -138,20 +138,20 @@ export class RefereesComponent implements AfterViewInit, OnInit {
     })
   }
 
-  RefereeLevel(item,type){
-    console.log('level row', type)
-    let dialogRef = this.dialog.open(LevelRefereeDialog, {
-      width: '500px',
-      data: {id : item.ID, name: item.name, type: type}
-    });
+  // RefereeLevel(item,type){
+  //   console.log('level row', type)
+  //   let dialogRef = this.dialog.open(LevelRefereeDialog, {
+  //     width: '500px',
+  //     data: {id : item.ID, name: item.name, type: type}
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('result',result);
-      if (result){
-        // this.setSuccessgame(result);
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('result',result);
+  //     if (result){
+  //       // this.setSuccessgame(result);
+  //     }
+  //   });
+  // }
 
   onEmptySelection (option){
     if (option ==='level'){

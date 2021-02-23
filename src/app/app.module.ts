@@ -19,7 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { GameformComponent } from './gameform/gameform.component';
 import { DateAlertDialog } from './gameform/datealert';
 import { AppointmentsComponent } from './appointments/appointments.component';
-import { LevelRefereeDialog } from './referees/levelreferee/LevelReferee';
+// import { LevelRefereeDialog } from './referees/levelreferee/LevelReferee';
 import { SeasonDialog } from './competitions/season/seasondialog';
 import { CompetitionDialog } from './competitions/competition/competitionselection';
 import { ClubDialog } from './competitions/club/clubselection';
@@ -117,7 +117,7 @@ const routes: Routes = [
     CompLevelSettingDialog,
     SanctionDialog,
     DateAlertDialog,
-    LevelRefereeDialog,
+    // LevelRefereeDialog,
 
     SnackBarComponent
   ],
