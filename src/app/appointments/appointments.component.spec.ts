@@ -25,16 +25,16 @@ describe('AppointmentsComponent', () => {
       declarations: [ AppointmentsComponent ],
       imports: [
         HttpClientModule,
-        BrowserAnimationsModule,
         RouterTestingModule,
+        FormsModule,
+        CommonModule,
         MatDialogModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
         MatTimepickerModule,
-        FormsModule,
-        CommonModule,
-        MatInputModule
+        MatInputModule,
+        BrowserAnimationsModule,
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

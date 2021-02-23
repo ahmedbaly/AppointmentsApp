@@ -27,13 +27,13 @@ describe('RefereesComponent', () => {
         { provide: MatDialog, useClass: LevelRefereeDialog }, //look this
         DataproviderService],
       imports: [
+        RouterModule.forRoot([]),
+        MatDialogModule,
         HttpClientModule,
-        NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        RouterModule.forRoot([]),
-        MatDialogModule
+        NoopAnimationsModule
       ]
 
     })

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataproviderService } from '../dataprovider.service';
 import { APP_BASE_HREF } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 describe('CompetitionsComponent', () => {
   let component: CompetitionsComponent;
@@ -23,12 +24,13 @@ describe('CompetitionsComponent', () => {
         { provide: MatDialogRef , useValue: {} },
         DataproviderService],
       imports: [
+        RouterModule.forRoot([]),
+        MatDialogModule,
         HttpClientModule,
-        NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        MatDialogModule
+        NoopAnimationsModule
       ]
     }).compileComponents();
   }));

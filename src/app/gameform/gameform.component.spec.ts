@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DataproviderService } from '../dataprovider.service';
 
@@ -21,11 +22,12 @@ describe('GameformComponent', () => {
         DataproviderService],
       declarations: [ GameformComponent ],
       imports : [
-        HttpClientModule,
+        RouterModule.forRoot([]),
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule,
-        RouterModule.forRoot([])
+        HttpClientModule,
+        NoopAnimationsModule
       ]
     })
     .compileComponents();

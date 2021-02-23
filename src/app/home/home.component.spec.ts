@@ -23,12 +23,12 @@ describe('HomeComponent', () => {
         { provide: MatDialogRef , useValue: {} },
         DataproviderService],
       imports: [
+        MatDialogModule,
         HttpClientModule,
-        NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        MatDialogModule
+        NoopAnimationsModule
       ]
     }).compileComponents();
   }));

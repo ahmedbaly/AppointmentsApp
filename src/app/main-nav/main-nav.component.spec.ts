@@ -18,7 +18,6 @@ describe('MainNavComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MainNavComponent],
       imports: [
-        NoopAnimationsModule,
         RouterTestingModule,
         LayoutModule,
         MatButtonModule,
@@ -26,6 +25,8 @@ describe('MainNavComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        NoopAnimationsModule,
+
       ]
     }).compileComponents();
   }));

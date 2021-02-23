@@ -18,12 +18,12 @@ describe('ClubsComponent', () => {
       declarations: [ ClubsComponent ],
       providers : [ DataproviderService],
       imports: [
+        RouterModule.forRoot([]),
         HttpClientModule,
-        NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        RouterModule
+        NoopAnimationsModule
       ]
     }).compileComponents();
   }));

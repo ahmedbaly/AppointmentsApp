@@ -24,13 +24,13 @@ describe('SessionsComponent', () => {
         { provide: MatDialogRef , useValue: {} },
         DataproviderService],
       imports: [
+        RouterModule.forRoot([]),
+        MatDialogModule,
         HttpClientModule,
-        NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        RouterModule.forRoot([]),
-        MatDialogModule
+        NoopAnimationsModule
       ]
     }).compileComponents();
   }));
