@@ -8,6 +8,7 @@ import { ClubsComponent } from './clubs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataproviderService } from '../dataprovider.service';
 import { RouterModule } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ClubsComponent', () => {
   let component: ClubsComponent;
@@ -24,7 +25,8 @@ describe('ClubsComponent', () => {
         MatSortModule,
         MatTableModule,
         NoopAnimationsModule
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
