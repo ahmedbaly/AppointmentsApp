@@ -8,7 +8,7 @@ import { RefereesMatchItem, RefereesMatchDataSource } from './referees-matchs-da
 import { DataproviderService } from '../dataprovider.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
-import { LevelRefereeDialog } from './LevelReferee';
+import { LevelRefereeDialog } from './levelreferee/levelreferee';
 
 @Component({
   selector: 'app-referees',

@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { DataproviderService } from '../dataprovider.service';
-import { LevelRefereeDialog } from './LevelReferee';
+import { LevelRefereeDialog } from './LevelReferee/levelreferee';
 
 import { RefereesComponent } from './referees.component';
 
