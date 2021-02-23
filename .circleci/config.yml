@@ -16,8 +16,6 @@ jobs:
     - run: yarn ng test --watch=false
 
 
-    To view XML test results, add the step store_test_results to your config.yml file.
-Documentation
 
 # version: 2.0
 # jobs:

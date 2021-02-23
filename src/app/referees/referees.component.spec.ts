@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { DataproviderService } from '../dataprovider.service';
-import { LevelRefereeDialog } from './LevelReferee/levelreferee';
+// import { LevelRefereeDialog } from './LevelReferee/levelreferee';
 
 import { RefereesComponent } from './referees.component';
 
@@ -19,12 +19,12 @@ describe('RefereesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       
-      declarations: [ RefereesComponent, LevelRefereeDialog],
+      declarations: [ RefereesComponent],
       providers : [    
         {provide: APP_BASE_HREF, useValue: '/'},
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef , useValue: {} },
-        { provide: MatDialog, useClass: LevelRefereeDialog }, //look this
+        // { provide: MatDialog, useClass: LevelRefereeDialog }, //look this
         DataproviderService],
       imports: [
         RouterModule.forRoot([]),
