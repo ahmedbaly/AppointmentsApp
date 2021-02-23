@@ -100,15 +100,13 @@ const routes: Routes = [
     CompetitionsComponent,
     HomeComponent,
     GameformComponent,
-    DateAlertDialog,
     AppointmentsComponent,
+    SessionsComponent,
     SuccessGameDialog,
-    LevelRefereeDialog,
     SeasonDialog,
     CompetitionDialog,
     ClubDialog,
     StandingDialog,
-    SessionsComponent,
     DateDialog,
     TrainingDialog,
     EnglishGroupsDialog,
@@ -118,9 +116,13 @@ const routes: Routes = [
     ProgressSpinnerDialog,
     CompLevelSettingDialog,
     SanctionDialog,
+    DateAlertDialog,
+    LevelRefereeDialog,
+
     SnackBarComponent
   ],
   imports: [
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -128,7 +130,6 @@ const routes: Routes = [
     AppRoutingModule,
     MatCardModule,
     MatSliderModule,
-    BrowserAnimationsModule,
     MatSidenavModule,
     LayoutModule,
     MatToolbarModule,
@@ -157,7 +158,7 @@ const routes: Routes = [
     MatTimepickerModule,
     MatSnackBarModule,
     MatTabsModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
+    BrowserAnimationsModule,
   ],
   providers: [
     HttpClient,
