@@ -9,6 +9,7 @@ import { HttpClientModule  } from '@angular/common/http';
 import { DataproviderService } from '../dataprovider.service';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { APP_BASE_HREF } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -29,7 +30,8 @@ describe('HomeComponent', () => {
         MatSortModule,
         MatTableModule,
         NoopAnimationsModule
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 

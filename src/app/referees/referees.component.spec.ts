@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -34,7 +35,8 @@ describe('RefereesComponent', () => {
         MatSortModule,
         MatTableModule,
         NoopAnimationsModule
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
     })
     .compileComponents();

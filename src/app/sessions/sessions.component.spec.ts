@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('SessionsComponent', () => {
   let component: SessionsComponent;
@@ -31,7 +32,9 @@ describe('SessionsComponent', () => {
         MatSortModule,
         MatTableModule,
         NoopAnimationsModule
-      ]
+      ],      
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+
     }).compileComponents();
   }));
 

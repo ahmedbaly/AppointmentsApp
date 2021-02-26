@@ -10,6 +10,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { DataproviderService } from '../dataprovider.service';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CompetitionsComponent', () => {
   let component: CompetitionsComponent;
@@ -31,7 +32,8 @@ describe('CompetitionsComponent', () => {
         MatSortModule,
         MatTableModule,
         NoopAnimationsModule
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
