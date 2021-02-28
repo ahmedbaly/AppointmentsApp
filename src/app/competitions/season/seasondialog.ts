@@ -74,6 +74,8 @@ export class SeasonDialog {
   setSeason(name){
     this.dataprovider.setSeason(name).then( () => {
       this.dialogRef.close({refresh : true});
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   

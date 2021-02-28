@@ -120,6 +120,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -130,6 +132,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
       this.dataSource.data = [];
       this.Items = []
       // this.getHistorySeason(this.Seasons[this.Seasons.length-1])
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 
@@ -142,6 +146,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
     this.seasonSelected = season;
     this.dataProvider.getSeasonCompetitions(season.id).then(data=>{
       this.toppingList = data as [];
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -168,6 +174,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
         this.dataSource.paginator = this.paginator;
         this.table.dataSource = this.dataSource;
       });  
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -177,6 +185,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 

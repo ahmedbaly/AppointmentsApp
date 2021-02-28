@@ -37,6 +37,8 @@ export class CompetitionDialog {
   setSeason(name){
     this.dataprovider.setSeason(name).then( () => {
       this.dialogRef.close({refresh : true});
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -44,6 +46,8 @@ export class CompetitionDialog {
     this.dataprovider.UpdateCompetitionsSeason(this.data.id_season,0,this.newCompetitionName,'insert').then(()=>{
       this.getCompetitions();
       this.closeDialog();
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   
@@ -72,6 +76,8 @@ export class CompetitionDialog {
   getCompetitions() {
     this.dataprovider.getcompetitionsSeason().then(data => {
       this.data.competitions = data as [];
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 

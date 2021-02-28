@@ -115,6 +115,8 @@ export class CompLevelSettingDialog {
   getRefereesLevels() {
     this.serviceProvider.getRefereesLevels().then(data => {
       this.Levels = data as [];
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -122,11 +124,15 @@ export class CompLevelSettingDialog {
     this.serviceProvider.getLevelsCompetition(competition).then(data => {
       this.competitionLevels = data as [];
       console.log("come",this.competitionLevels)
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
   setLevelsCompetition(id,competition,level){
     this.serviceProvider.setLevelsCompetition(id,competition.id_competition,level.id).then(data => {
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 

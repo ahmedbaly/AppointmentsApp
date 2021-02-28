@@ -37,6 +37,9 @@ export class LevelRefereeDialog {
 
   Naturechanges(subtask) {
     this.dataprovider.setRefereeNatures(this.data.id,subtask.id)
+    .catch( err => {
+      console.log('err', err)
+    });
   }
 
   Levelchanges(level) {
@@ -45,6 +48,9 @@ export class LevelRefereeDialog {
       id_ref_lev = this.Levels.id
     }
     this.dataprovider.updateRefereeLevel(this.data.id,level.id,id_ref_lev)
+    .catch( err => {
+      console.log('err', err)
+    });
   }
 
   closeDialog() {
@@ -78,25 +84,33 @@ export class LevelRefereeDialog {
   getRefereeNatures() {
     this.dataprovider.getRefereesNatures().then(data => {
       this.data.natures = data;
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   getRefereeNature(id_referee) {
     this.dataprovider.getRefereeNature(id_referee).then(data => {
     this.Natures = data
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   getRefereesLevels() {
     this.dataprovider.getRefereesLevels().then(data => {
       this.data.levels = data;
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   getRefereeLevel(id_referee) {
     this.dataprovider.getRefereeLevel(id_referee).then(data => {
     this.Levels = data[0];
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 }
 

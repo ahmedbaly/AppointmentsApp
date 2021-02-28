@@ -160,7 +160,9 @@ export class SanctionDialog implements OnInit{
               break;
           }
         }
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   SendNotes(): void {

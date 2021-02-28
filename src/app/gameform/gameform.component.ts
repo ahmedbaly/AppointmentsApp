@@ -303,12 +303,16 @@ export class GameformComponent implements OnInit {
     this.dataprovider.getcompetitions().then(data =>{
       this.origItems = data ; 
       this.competitions = this.origItems;
+    }).catch( err => {
+      console.log('err', err)
     });
   }
   getStadiums(){
     this.dataprovider.getStadiums().then(data =>{
       this.origStads = data ; 
       this.stadiums = this.origStads;
+    }).catch( err => {
+      console.log('err', err)
     });
    }
   getLastID(){
@@ -317,12 +321,16 @@ export class GameformComponent implements OnInit {
         this.onChangeofOptions(data,'ID')
         this.readonlymagic = true;
       }
+    }).catch( err => {
+      console.log('err', err)
     });
   }
   getReferees(){
     this.dataprovider.getReferees().then(data =>{
       this.origRefs = data ; 
       this.Referees = this.origRefs;
+    }).catch( err => {
+      console.log('err', err)
     });
   }
   getClubs(){
@@ -330,11 +338,15 @@ export class GameformComponent implements OnInit {
       console.log('Clubs', data)
       this.origClubs = data ; 
       this.Clubs = this.origClubs;
+    }).catch( err => {
+      console.log('err', err)
     });
   }
   getAssessors(){
     this.dataprovider.getAssessors().then(data =>{
       this.Assessors= data ; 
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 

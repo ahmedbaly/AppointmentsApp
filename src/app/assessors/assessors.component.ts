@@ -40,7 +40,9 @@ export class AssessorsComponent  implements AfterViewInit, OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
-   });
+   }).catch( err => {
+    console.log('err', err)
+  });
  }
 
   applyFilter(event: Event) {

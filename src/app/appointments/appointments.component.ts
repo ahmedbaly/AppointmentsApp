@@ -206,6 +206,8 @@ export class AppointmentsComponent implements OnInit {
       this.Seasons = res ;
       this.season = this.Seasons[this.Seasons.length-1].season
       this.getcompetitions(this.Seasons[this.Seasons.length-1])
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 
@@ -221,7 +223,9 @@ export class AppointmentsComponent implements OnInit {
       this.compLimit =  this.competitions[0].limit
       this.round = "6";
        this.getClubs(res[0])
-   });
+   }).catch( err => {
+    console.log('err', err)
+  });
   }
   
   getClubs(row){  
@@ -241,6 +245,8 @@ export class AppointmentsComponent implements OnInit {
       this.Clubs.forEach(element => {
         this.truefalse.push(false)
     });
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -248,12 +254,16 @@ export class AppointmentsComponent implements OnInit {
     this.dataprovider.getStadiums().then(data =>{
       this.origStads = data ; 
       this.stadiums = this.origStads;
+    }).catch( err => {
+      console.log('err', err)
     });
    }
 
   getStandings(){
     this.dataprovider.getStandings(this.competition).then(data =>{
       this.standings = data ; 
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 
@@ -264,6 +274,8 @@ export class AppointmentsComponent implements OnInit {
       for (let i = 0; i < this.Nature.length; i++) {
         this.getRefereesbyLevelNature(this.Nature[i])
       }
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 
@@ -295,6 +307,8 @@ export class AppointmentsComponent implements OnInit {
         default:
           break;
       }
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -308,6 +322,8 @@ export class AppointmentsComponent implements OnInit {
       this.RefereesScores = data as [];
       // console.log('RefereesScorematch',this.RefereesScores)
       this.getColumns();
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   getColumns(){
@@ -343,6 +359,8 @@ export class AppointmentsComponent implements OnInit {
       this.AssistantsScores = data as [];
       //console.log('assis', this.AssistantsScores)
       this.getColumnsAssistant();
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   getColumnsAssistant(){  
@@ -371,6 +389,8 @@ export class AppointmentsComponent implements OnInit {
       this.FourthScores = data as [];
       this.getColumnsFourth();
       this.dialog.closeAll();
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   getColumnsFourth(){  
@@ -395,6 +415,8 @@ export class AppointmentsComponent implements OnInit {
   getScoresTemporary(){
     this.dataprovider.getScoresTemporary(this.competition).then(res=>{
       // console.log("afsa",res)
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -778,6 +800,8 @@ export class AppointmentsComponent implements OnInit {
            this.Appointments = res ;
            console.log("setGamesTemporary", res)
            this.getGameReferees();
+      }).catch( err => {
+        console.log('err', err)
       })
     }
   }

@@ -18,10 +18,11 @@ export class DataproviderService {
   getHome(){
     let res = []
     return new Promise(resolve => {
-      this.http.get("http://localhost/publish/api/qfareferees/gethistory").subscribe(data=>{
+      this.http.get("http://localhost/publish/api/qfareferees/gethistory")
+      .subscribe(data=>{
         res = data as []
         resolve(res) ;
-      });
+      })
     });
   }
 

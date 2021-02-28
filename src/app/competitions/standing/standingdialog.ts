@@ -73,6 +73,8 @@ export class StandingDialog {
   updateClubStanding(){
     this.serviceProvider.updateClubStanding(this.data).then(res=> {
       this.dialogRef.close();
+    }).catch( err => {
+      console.log('err', err)
     })
   }
   

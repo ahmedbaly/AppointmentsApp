@@ -94,6 +94,8 @@ export class CompetitionsComponent implements AfterViewInit, OnInit {
       this.Seasons = res ;
       this.changeDetectorRef.detectChanges();
       this.getcompetitions(this.Seasons[this.Seasons.length-1])
+    }).catch( err => {
+      console.log('err', err)
     });
   }
 
@@ -108,13 +110,17 @@ export class CompetitionsComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
       this.getClubs(res[0])
-   });
+   }).catch( err => {
+    console.log('err', err)
+  });
   }
 
   getClubs(row){
     this.ProviderService.getClubsCompetitions(row.id_competition).then(res=>{
       this.CompetitionSelected = row;
       this.Clubs = res;
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 

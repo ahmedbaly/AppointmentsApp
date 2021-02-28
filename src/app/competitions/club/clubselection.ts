@@ -64,6 +64,8 @@ export class ClubDialog {
   getClubsSelected(){
     this.dataprovider.getClubsCompetitions(this.data.competition.id_competition).then(res=>{
         this.data.ClubSelected = res ;
+    }).catch( err => {
+      console.log('err', err)
     })
   }
 
@@ -71,6 +73,8 @@ export class ClubDialog {
     this.dataprovider.updateClubsCompetition(
         0, this.data.competition.id_competition,this.newClubName, 'insert').then(res=>{
             this.dialogRef.close();
+        }).catch( err => {
+          console.log('err', err)
         })
   }
 

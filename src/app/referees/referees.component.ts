@@ -123,19 +123,25 @@ export class RefereesComponent implements AfterViewInit, OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
   //Oninit
   getNatures() {
     this.dataprovider.getRefereesNatures().then(data => {
       this.natureList = data as [];
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
   //Oninit
   getLevels() {
     this.dataprovider.getRefereesLevels().then(data => {
       this.levelList = data as [];
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   // RefereeLevel(item,type){
@@ -182,13 +188,17 @@ export class RefereesComponent implements AfterViewInit, OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
   //Oninit
   getseason(){
     this.dataprovider.getSeasons().then(res => {
       this.Seasons = res ;
       this.getCompetitions(this.Seasons[this.Seasons.length-1])
+    }).catch( err => {
+      console.log('err', err)
     });
   }
   //Oninit
@@ -196,7 +206,9 @@ export class RefereesComponent implements AfterViewInit, OnInit {
     this.seasonSelected = season;
     this.dataprovider.getSeasonCompetitions(season.id).then(data=>{
       this.toppingList = data as [];
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   onSelectionSeason(season){
@@ -234,7 +246,9 @@ export class RefereesComponent implements AfterViewInit, OnInit {
           this.subtable.dataSource = this.subdataSource;
         });  
       }
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   getHistorySeason(season){
@@ -246,7 +260,9 @@ export class RefereesComponent implements AfterViewInit, OnInit {
       this.subdataSource.paginator = this.paginator;
       this.subtable.dataSource = this.subdataSource;
       this.subdataSource.filter = this.RefereeSelected.name
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
 
@@ -275,7 +291,6 @@ export class RefereesComponent implements AfterViewInit, OnInit {
           this.pieChartData.push(data[i].number)
         }
         this.reflist = !this.reflist;
-
     });
     }
 
@@ -297,7 +312,9 @@ export class RefereesComponent implements AfterViewInit, OnInit {
     this.dataprovider.setavailability(row,toggle.checked).then(data =>{
       console.log('resul set ava', data);
       row.available = !row.available;
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   }

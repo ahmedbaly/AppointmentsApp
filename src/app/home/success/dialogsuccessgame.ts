@@ -73,7 +73,9 @@ export class SuccessGameDialog {
         }
       }
       
-    })
+    }).catch( err => {
+      console.log('err', err)
+    });
   }
 
   SendNotes(): void {
@@ -111,7 +113,9 @@ export class SuccessGameDialog {
       console.log('refereesssss ',this.Referees.referees[i] )
       this.serviceProvider.setSuccessGame(this.Referees, this.Referees.referees[i]).then(data=>{
         this.dialogRef.close();
-      })
+      }).catch( err => {
+        console.log('err', err)
+      });
     }
 
   }
