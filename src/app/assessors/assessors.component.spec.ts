@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -20,7 +21,8 @@ describe('AssessorsComponent', () => {
       declarations: [ AssessorsComponent ],
       imports: [
         RouterModule.forRoot([]),
-        HttpClientModule,
+        // HttpClientModule,
+        HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

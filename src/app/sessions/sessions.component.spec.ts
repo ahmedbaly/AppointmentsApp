@@ -11,6 +11,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SessionsComponent', () => {
   let component: SessionsComponent;
@@ -26,8 +27,9 @@ describe('SessionsComponent', () => {
         DataproviderService],
       imports: [
         RouterModule.forRoot([]),
+        HttpClientTestingModule,
         MatDialogModule,
-        HttpClientModule,
+        // HttpClientModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

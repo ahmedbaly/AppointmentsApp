@@ -11,6 +11,7 @@ import { DataproviderService } from '../dataprovider.service';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CompetitionsComponent', () => {
   let component: CompetitionsComponent;
@@ -27,7 +28,8 @@ describe('CompetitionsComponent', () => {
       imports: [
         RouterModule.forRoot([]),
         MatDialogModule,
-        HttpClientModule,
+        HttpClientTestingModule,
+        // HttpClientModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

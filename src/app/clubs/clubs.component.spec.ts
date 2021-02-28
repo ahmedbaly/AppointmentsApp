@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataproviderService } from '../dataprovider.service';
 import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ClubsComponent', () => {
   let component: ClubsComponent;
@@ -20,7 +21,8 @@ describe('ClubsComponent', () => {
       providers : [ DataproviderService],
       imports: [
         RouterModule.forRoot([]),
-        HttpClientModule,
+        // HttpClientModule,
+        HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

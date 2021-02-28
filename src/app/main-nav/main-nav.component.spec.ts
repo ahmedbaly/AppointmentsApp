@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MainNavComponent } from './main-nav.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MainNavComponent', () => {
   let component: MainNavComponent;
@@ -20,6 +21,7 @@ describe('MainNavComponent', () => {
       declarations: [MainNavComponent],
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         LayoutModule,
         MatButtonModule,
         MatIconModule,

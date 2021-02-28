@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,10 +25,11 @@ describe('GameformComponent', () => {
       declarations: [ GameformComponent ],
       imports : [
         RouterModule.forRoot([]),
+        HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule,
-        HttpClientModule,
+        // HttpClientModule,
         NoopAnimationsModule
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

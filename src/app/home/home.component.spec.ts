@@ -10,6 +10,7 @@ import { DataproviderService } from '../dataprovider.service';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { APP_BASE_HREF } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -25,7 +26,8 @@ describe('HomeComponent', () => {
         DataproviderService],
       imports: [
         MatDialogModule,
-        HttpClientModule,
+        // HttpClientModule,
+        HttpClientTestingModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,

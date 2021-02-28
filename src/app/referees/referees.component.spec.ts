@@ -1,5 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -29,8 +30,9 @@ describe('RefereesComponent', () => {
         DataproviderService],
       imports: [
         RouterModule.forRoot([]),
+        HttpClientTestingModule,
         MatDialogModule,
-        HttpClientModule,
+        // HttpClientModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
