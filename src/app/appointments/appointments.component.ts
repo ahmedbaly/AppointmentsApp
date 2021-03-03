@@ -244,6 +244,7 @@ export class AppointmentsComponent implements OnInit {
       this.getFourthScorematch();
       this.Clubs.forEach(element => {
         this.truefalse.push(false)
+        console.log(element)
     });
     }).catch( err => {
       console.log('err', err)
