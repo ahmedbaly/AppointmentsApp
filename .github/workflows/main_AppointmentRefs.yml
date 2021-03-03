@@ -32,5 +32,5 @@ jobs:
       with:
         app-name: 'AppointmentRefs'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_64cc0437f17a48a28eec1d8d731e7abb }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_27376d4f20ce4ce2ba6e6631867edca1 }}
         package: .
